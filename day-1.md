@@ -12,17 +12,22 @@ Generate a `requirements.txt` file using pip freeze and save it at `/root/code/r
 # Solution:
 
 - cd into the `code` dir:
+
 `cd /root/code`
 
 - Create the virtual enviornment
+
 `python3 -m venv ml-env`
 
 - Activate the virtual env:
+
 `source ml-env/bin/activate`
 
 - Install the requiremd packages within the new venv
+
 `pip install numpy pandas scikit-learn metplotlib`
 
-- Generate a `requirements.txt`
+- Generate a `requirements.txt` with
+
 `pip freeze > /root/code/requirements.txt`
 
