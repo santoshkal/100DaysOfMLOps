@@ -40,11 +40,13 @@ The xFusionCorp Industries ML team uses SeaweedFS as the shared S3-compatible ob
     secret_access_key = weedadmin123
 ```
 
+**Note**: For complete options in the configuration file refer to the [official docs](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
+
 The `['core']` section of the vdc config sets the repository’s default remote to s3
+
 The `['remote, "s3"']` configures the parameters for the S3 bucket with endpoint, bucket name and
 credentials.
 
-**Note**: For complete options in the configuration file refer to the [official docs](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
 
 
 - After updating the config, you can check if everything is fine by listing the remote with `dvc
