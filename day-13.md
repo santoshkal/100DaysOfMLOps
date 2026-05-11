@@ -42,7 +42,7 @@ ERROR: failed to pull data from the cloud - 1 files failed to download
 You can see, it says *Unable to locate credentials*
 
 - Explore the config in `fraud-detection/.dvc/config`, and you will see that the credentials are
-missing in the config. Update it oaccorsdingly as provided in Point-3 of the task:
+missing in the config. Update it accorsdingly as provided in point-4 of the task:
 
 ```
 [core]
