@@ -25,7 +25,7 @@ Make sure JupyterLab is running before using the button at the top of the lab.
 ---
 # Solution:
 - The tasks asks to *Create any missing directories*. If we look at the config. we see that the
-`c.ServerApp.nootbook_dir = '/root/notebooks' is defined. But, we do not see a dir in `/root` named
+`c.ServerApp.nootbook_dir = '/root/notebooks'` is defined. But, we do not see a dir in `/root` named
 `notebooks`. First we create this dir by `mkdir /root/notebooks`
 
 - Update the config according to the requirement provided in the task:
@@ -46,5 +46,5 @@ Now, activate the `venv` and run the command `jupyter lab --config=/root/code/ju
 
 You should be able to open the Jupyter lab UI by clicking the button on top right of lab. 
 
-![Jupyter lab UI](../assets/day-2.png)
+![Jupyter lab UI](./assets/day-2.png)
 
