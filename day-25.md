@@ -45,10 +45,8 @@ create a model named `fraud-detector`.
 
 ![v2](./assets/mlops-day25-6.png)
 
-- Now gi back to **Model registry** and select `fraud-detector`. Here, we need to provide alises to
+- Now navigate back to **Model registry** and select `fraud-detector`. Here, we need to provide alises to
   the moldes.
-
-![alias](./assets/mlops-day25-7.png)
 
 ![Alias-1](./assets/mlops-day25-7a.png)
 
