@@ -23,7 +23,7 @@ A xFusionCorp Industries data scientist has accumulated ten runs in the fraud-de
 We can see two experiments listed: `fraud-detection`, and `Default`. We need to triage the
 `fault-detection` experiment based on some filters.
 
-![open-rns](./assets/mlflow-day23.png)
+![open-MLFlow-UI](./assets/mlflow-day23.png)
 
 - Click on the `fraud-detection`, this will open all the **Runs** for this experiment. On the Top we
   can see a query window, we need to use it to filer runs based on our first requirement:  `metrics.f1_score > 0.85`, and sort it based on *highest `f1_score` values.
