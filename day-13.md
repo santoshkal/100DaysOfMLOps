@@ -1,4 +1,4 @@
-# Task:
+# Task: Pull DVC-Tracked Data from Remote
 
 A new xFusionCorp Industries team member has cloned the `fraud-detection` repository onto a fresh machine. The DVC remote is already configured to point at the team's SeaweedFS bucket, but `dvc pull` is failing. Diagnose the cause, correct the configuration, and pull the dataset.
 

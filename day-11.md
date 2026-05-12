@@ -1,4 +1,4 @@
-# Task:
+# Task: Track a Dataset with DVC
 
 A teammate has added the transactions dataset to the xFusionCorp Industries fraud-detection repository, but it was committed directly to Git instead of being tracked with DVC. Bring the repository in line with the team standard—every dataset under data/ must be tracked by DVC, not by Git.
 

@@ -1,4 +1,4 @@
-# Task:
+# Task: Create a Makefile for ML Workflow Automation
 
 The xFusionCorp Industries ML team uses a Makefile to orchestrate common tasks—data processing, training, testing, and cleanup. A draft Makefile exists at /root/code/fraud-detection/Makefile, but make all does not complete successfully. Bring the Makefile in line with the team's standard.
 

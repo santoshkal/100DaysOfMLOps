@@ -1,4 +1,5 @@
-# Task:
+# Task: Set Up and Configure Jupyter Notebook Server 
+
 A teammate has configured a JupyterLab server for the xFusionCorp Industries data science team, but the server does not behave correctly. Inspect the configuration, diagnose the issues, and start the server.
 
 

@@ -1,4 +1,4 @@
-# Task:
+# Task: Parameterize a DVC Pipeline
 
 The xFusionCorp Industries ML team manages model hyperparameters through params.yaml so experiments can vary without code changes. The fraud-detection project's train stage already wires `params.yaml` for `n_estimators`, but `dvc repro` currently fails. Correct the parameter wiring and demonstrate that DVC re-runs the train stage when the parameter changes.
 

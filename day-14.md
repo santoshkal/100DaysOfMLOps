@@ -1,4 +1,4 @@
-# Task:
+# Task: Create a DVC Pipeline for Data Processing
 
 The xFusionCorp Industries ML team uses DVC pipelines to keep data processing reproducible. A draft `dvc.yaml` exists in the fraud-detection project, but `dvc repro` does not complete the full pipeline. Correct the pipeline definition so it runs cleanly end to end.
 

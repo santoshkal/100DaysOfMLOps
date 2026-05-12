@@ -1,4 +1,4 @@
-# Task:
+# Task: Fix a Broken uv Lockfile Specification
 
 The xFusionCorp Industries ML team uses uv and lockfiles to keep Python dependencies reproducible across machines. A teammate has left behind a requirements.in specification that does not match the team's standard. Correct it and compile it into a pinned lockfile.
 

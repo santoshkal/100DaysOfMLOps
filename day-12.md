@@ -1,4 +1,4 @@
-# Task:
+# Task: Configure a DVC Remote Storage
 
 The xFusionCorp Industries ML team uses SeaweedFS as the shared S3-compatible object store for DVC-tracked data. A `.dvc/config` already declares a remote called `s3` for the fraud-detection project, but dvc push currently fails. Correct the configuration and push the tracked data into the SeaweedFS bucket.
 

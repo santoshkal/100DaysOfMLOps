@@ -1,4 +1,4 @@
-# Task:
+# Task: Create a Custom ML Project Template with Cookiecutter
 
 The xFusionCorp Industries ML platform team maintains a Cookiecutter template that new ML projects are generated from. A draft template exists at `/root/code/mlops-template/`, but it does not render. Correct the template and use it to generate a project.
 

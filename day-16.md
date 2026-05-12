@@ -1,4 +1,4 @@
-# Task:
+# Task: Track ML Metrics with DVC
 
 After training a model, the xFusionCorp Industries ML team wants DVC to surface metrics through `dvc metrics show` and the DVC extension's METRICS view. The fraud-detection pipeline already trains a model and writes a `metrics.json`, but DVC does not recognise the file as a metric. Wire it in correctly.
 

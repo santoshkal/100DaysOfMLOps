@@ -1,4 +1,4 @@
-# Task:
+# Task: Package an ML Project as Installable Python Package
 
 The xFusionCorp Industries deployment team needs the fraud-detection model code packaged as an installable Python distribution. A draft `pyproject.toml` exists at `/root/code/fraud-detection/`, but it does not build a wheel that meets the team's standard. Correct the file and produce a compliant package.
 

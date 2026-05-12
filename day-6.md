@@ -1,4 +1,4 @@
-# Task:
+# Task: Set Up Code Quality Tools for ML Code
 
 The xFusionCorp Industries ML team enforces code quality with ruff and black on every pull request. The project at /root/code/fraud-detection/ currently fails both tools. Make it pass them.
 

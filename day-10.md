@@ -1,4 +1,4 @@
-# Task:
+# Task: Install and Initialize DVC in an ML Project
 
 The xFusionCorp Industries ML team is adopting DVC so that datasets and model files are versioned separately from code. Initialise DVC inside the existing Git repository at `/root/code/fraud-detection/` and record the initialisation in Git.
 

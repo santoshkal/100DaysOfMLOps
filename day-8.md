@@ -1,4 +1,4 @@
-# Task:
+# Task: Configure Pre-Commit Hooks for ML Repository
 
 The xFusionCorp Industries ML team enforces code quality on every commit via `pre-commit`. A draft `.pre-commit-config.yaml` exists in the git repository at `/root/code/fraud-detection/`, but it does not match the team's standard and `pre-commit run --all-files` fails against it. Correct the configuration.
 

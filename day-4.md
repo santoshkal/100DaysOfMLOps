@@ -1,4 +1,4 @@
-# task:
+# task: Create a Standard ML Project Structure
 
 A colleague has started a new ML project at /root/code/fraud-detection/, but the layout does not match the xFusionCorp Industries standard. Bring the project in line with the team's conventions.
 
