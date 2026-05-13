@@ -69,8 +69,7 @@ export MLFLOW_S3_ENDPOINT_URL=http://localhost:8333
 mlflow models serve \
   -m "models:/fraud-detector-v2@champion" \
   -p 5001 \
-  --env-manager=local \
-  > /tmp/serve.log 2>&1 &
+  --env-manager=local
 
 if curl -sf -o /dev/null http://localhost:5001/health; then
   echo "healthy"
