@@ -41,6 +41,10 @@ Review the existing project and correct everything that does not match the requi
 - First cd into the `fraud-detection` dir and check the `requirements.txt`. We need to update it
 according to the requirements of the task. It should look like this:
 
+> **NOTE**: There are two README.md in this task. One is in the root at `./code` and the one we will
+> work is at `./code/fraud-detection`. First `cd` into the `fraud-detection` directory.
+
+
 ```
 scikit-learn
 pandas
