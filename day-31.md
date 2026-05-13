@@ -53,7 +53,7 @@ Now we set the `output.mde_path` as defined in the task and re-run `src/models/t
 should see the `model.pkl` generated and located in `./models` directory.
 
 
-![config](./assets/mlops/day-31.png)
+![config](./assets/mlops-day31.png)
 
 Hit **Check**
 
