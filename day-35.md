@@ -34,9 +34,9 @@ The xFusionCorp Industries ML platform team tunes fraud-detection hyperparameter
 
 - Next we check  the MLFlow UI if the experiment `hyperopt-tuning` is pushed will 20 runs. But, we see no runs being pushed to MLFlow server. When we inspect the `tune.py` we coudl see that the the MLFlow Tracking URL is set but there no code to push the runs to server. We add the code to push and re run the `./tune.py` and see if the runs were pushed to Server in the UI.
 
-![add-server-code](./assets/mlflow-day35-1.png)
+![add-server-code](./assets/mlops-day35-1.png)
 
-![check-runs-ui](./assets/mlflow-day35-2.png)
+![check-runs-ui](./assets/mlops-day35-2.png)
 
 - Verify that `./configs/best_prams.yaml` is written and hit **Check**.
 
