@@ -68,7 +68,7 @@ We update this on line *49* in `backoff.py`
 - After setting the tag, we re-run the `backoff.py` and verify that the `./reports/winner.json`
 is properly written with all the keys.
 
-![verify-winner](./assets/mlops-day-36-3.png)
+![verify-winner](./assets/mlops-day36-3.png)
 
 - We also need to ensure, that the MLFlow server has three runs of `backoff` experiment exist in the
 Server UI, one per candidate, each with `tags.candidate`, the candidate's hyperparameters, and `metrics.f1_score`.
