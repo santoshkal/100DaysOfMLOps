@@ -30,6 +30,9 @@ The xFusionCorp Industries ML platform team is adopting Feast as the feature sto
 
 - This task deals with [`Feast`](https://docs.feast.dev/getting-started/quickstart), a feature store for AI/ML systems.
 
+Feature store stores the cleaned and converted raw data , which can then be used in the training pipelines.
+
+
 - The first tasks is to initialisze a new feature store by name `feature_store`
 And its given that `feast` CLI is installed, which can be verified with `feast version` command.
 Once verified, we can initialize a new repo with `feast init feature_store` command.
