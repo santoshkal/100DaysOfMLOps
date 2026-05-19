@@ -30,6 +30,21 @@ The xFusionCorp Industries ML platform team ships fraud-detection models built o
 - cd inro `fraud-detection` and inspect the `src/models/train_pytorch.py` in VSCode. The docstrings say *Every non-device concern is correctly wired*
 and *The current wiring assumes a CUDA GPU is always present*. This is our TODO and we need to make the script *device* aware instead of current
 hardcoded values. of `model.gpu()` and other two calls.
+The tasks also hints at using `torch.cuda.is_available()`. One way to do devise aware training is by using`torch.device("cuda" if torch.cuda.is_available() else "cpu")`. This will set he device as `gpu` if available, or use `cpu`.
+
+We update the code by removing all the hardcoded reference to `cuda`` as device, and set the device as a conditional variable based on device
+availability.
+
+![update-conditional-device](./assets/mlops-day39.png)
+
+
+- Now, we run the `src/models/train_pytorch.py` and see the logs in MLFlow server. We can confirm that the experiment run has one run and logs
+`device` and `final_loss` params.
+
+![verify-run](./assets/mlops-day39-1.png)
+
+Hit **Check**
+
 
 
 
