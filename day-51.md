@@ -19,7 +19,7 @@ The xFusionCorp Industries ML platform team ships the `fraud-detection` model as
   - The builder stage produces /app/model.pkl (the trained model).
   - The runtime stage contains /app/model.pkl (copied out of the builder stage) and serve.py.
   - The runtime stage's pip install line installs only the four packages serve.py needs: flask, joblib, numpy, scikit-learn.
-  - docker images ml-serve:v1 lists the built image; docker run --rm -p 8080:8080 ml-serve:v1 exposes /health returning {"status": "ok"} on port 8080.
+  - docker images ml-serve:v1 lists the built image; `docker run --rm -p 8080:8080 ml-serve:v1` exposes /health returning {"status": "ok"} on port 8080.
 
 
 > Multi-stage builds let you ship runtime images that carry only what the serving app needs — training dependencies and source files stay in the builder stage and are discarded. docker build -t ml-serve:v1 . can be re-run as each change lands; Docker re-uses cached layers when only runtime-stage lines change.
@@ -35,6 +35,12 @@ update the Dockerfile accordingly:
 
 - Run the `docker build -t ml-serve:v1 .` to build and tag the image:
 
+![build-container](./assets/mlops-day51a.png)
+
+- We can check for `/health` port by running the container and trying to curl to the port on the other terminal with `curl
+http://localhost:<port>/health`, and we should see it return `ok`.
+
+Hit **Check**
 
 
 
