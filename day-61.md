@@ -48,18 +48,34 @@ The task is to deploy the model-serving container through Portainer so that depl
 
 - Next, open the Portainer UI by clicking the button at the top right and log in with the credentials: username `admin`, password `xFusionCorp2026!`.
 
-![login-portainer](./assets/mlops-day61a.png)
-
 - Create a new local environment in Portainer and define the required parameters for deploying the container as described in **step 4** of the task.
+  - Select the `local` enviornment from the UI:
 
-![prepare-deploy](./assets/mlops-day61b.png)
+![prepare-deploy](./assets/mlops-day61a.png)
 
-![deploy-container](./assets/mlops-day61c.png)
+  - From the `local` enviornment, select the **Containers** from the left menu.
 
+![deploy-container](./assets/mlops-day61b.png)
+
+  - Click **Add container**
+
+![add-container](./assets/mlops-day61c.png)
+
+  - Fill the form with the values provided in **Step 4**
+
+![fill-form](./assets/mlops-day61d.png)
+
+  - Add the Ports and volumes and click **Deploy the container**
+
+![deply-container](./assets/mlops-day61e.png)
+
+  - Verify that the deployed container is in *running* state
+
+![verify-container](./assets/mlops-day61f.png)
 
 - Once the container is deployed, return to the lab terminal and confirm by curling the `/health` and `/predict` endpoints.
 
-![curl-rndpoints](./assets/mlops-day61d.png)
+![curl-rndpoints](./assets/mlops-day61g.png)
 
 
 - After receiving the expected responses from the curl queries, hit **Check** to complete the task.
