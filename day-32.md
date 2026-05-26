@@ -29,40 +29,35 @@ The xFusionCorp Industries ML platform team's audit pipeline depends on run-to-r
 # Solution
 
 
-The Task clearly states:
+The task states:
 > Running `/root/code/fraud-detection/check_determinism.sh` currently prints **FAIL**: the three runs did not produce byte-identical metrics. followed by a diff. Open `src/models/train.py` in the VS Code editor, add the seed discipline required by scikit-learn's randomised operations, save, and re-run the probe.
 
-And, at the end signals: *Only train.py needs to change. The probe, the dataset, and the MLflow wiring are all correct and must not be modified.*
+And it clarifies: *Only `train.py` needs to change. The probe, the dataset, and the MLflow wiring are all correct and must not be modified.*
 
-- cd into `fraud-detection` directory and open `src/models/train.py`
+- Change into the `fraud-detection` directory and open `src/models/train.py`.
 
-- First we verify what's `check_determinism.sh` returns by running the script. We see that it fails
-  with a log message
+- First verify what `check_determinism.sh` returns by running the script. It should fail with a message:
 
 ```
 FAIL: the three runs did not produce byte-identical metrics.
 ```
 
 
-- To fix this, we need to *add the seed discipline required by scikit-learn's randomised operations*. The
-[scikit-learns offcial docs](https://scikit-learn.org/stable/glossary.html#term-random_state) suggests using `random_state` *Whenever randomization is part of a
-Scikit-learn algorithm*.
+- To fix this, we need to add the seed discipline required by scikit-learn's randomised operations. The [scikit-learn official docs](https://scikit-learn.org/stable/glossary.html#term-random_state) suggest using `random_state` whenever randomisation is part of a scikit-learn algorithm.
 
-So, we add`random_state` with a value of `42` as parameter in `train_test_split()` and `RandomForestClassifier()`
+Add `random_state=42` as a parameter in both `train_test_split()` and `RandomForestClassifier()`.
 
 ![random_state](./assets/mlops-day32.png)
 
-After setting the `random_state` and re running the `check_determinism.sh` we get a sucess log:
+After setting `random_state` and re-running `check_determinism.sh`, we get a success log:
 
 ```
 OK: all three runs produced byte-identical metrics.
 ```
 
-And, the test runs produce byte-identical metrics JSON files at
+The test runs produce byte-identical metrics JSON files at the specified paths.
 
-- Now we need to see if `ffraud-detection-repro` expsriment and verify if it has runs named
-`repro-run-1` and `repro-run-2`, with identical `metrics.accuracy` and `metrics.f1_score` values. We
-navigate to the MLFlow UI and check runs for the `fraud-detection-repro` experiment.
+- Now verify that the `fraud-detection-repro` experiment has runs named `repro-run-1` and `repro-run-2` with identical `metrics.accuracy` and `metrics.f1_score` values. Navigate to the MLflow UI and inspect the runs for the `fraud-detection-repro` experiment.
 
 ![verify-runs](./assets/mlops-day32-1.png)
 

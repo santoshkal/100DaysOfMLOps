@@ -29,26 +29,23 @@ The xFusionCorp Industries ML platform team ships a local dev stack — Jupyter 
 
 # Solution:
 
-- The task is to fix the issueus in the Docker compose file. CD into the `ml-dev` directory and inspect the `docker-compose-yml` in VSCode.
-    - First we inspect if all the ports are wired as per requirement. We can see that the two services `jupyter` and `mlflow` are good with port
-    definitions. But, there seems to be a mix-up in `seaweedfs` service. The seaweedfs API and seaweedfs filler UI ports are interchanged. We fix
-    that:
+- The task is to fix issues in the Docker Compose file. Change into the `ml-dev` directory and inspect `docker-compose.yml` in VSCode.
+    - First, check if all ports are wired correctly. The `jupyter` and `mlflow` services have correct port definitions. However, there is a mix-up in the `seaweedfs` service: the S3 API port and the Filer UI port are swapped. Fix that:
 
 ![check-ports](./assets/mlops-day52.png)
 
 
-- Next, is to verify that **The Jupyter UI answers without prompting for a token.**. This is because, with default container **ENTRYPOINT**, the jupyter server starts with a pre-generated auth token, leaving the UI unreachable through the browser.
+- Next, ensure the Jupyter UI answers without prompting for a token. By default, the container's entrypoint starts Jupyter with a pre-generated auth token, making the UI unreachable through the browser.
 
-Finding the right set of commands and args from the docs did not produce good results for me. So I exec'ed into the image `jupyter/base-notebook:python-3.11` with bash shell, and grep'ed for `token` within the `start-notebook.py` the default **ENTRYPOINT** of the image. The command to run within the image to get all the available options is `start-notebook.py --help-all` (Note it's `--help-all` flag). I found one option `IdentityProvider.token` which takes a *String*b and we can set it to empty etsing with `""`. So update the `jupyter` service in Docker compose with following updates and run `docker compose up -d`, to see if all container are up:
+To find the correct configuration, exec into the `jupyter/base-notebook:python-3.11` image and run `start-notebook.py --help-all`. The `IdentityProvider.token` option accepts a string and can be set to an empty string `""`. Update the `jupyter` service in Docker Compose with this configuration and run `docker compose up -d` to verify all containers are up:
 
 ![update-command-and-build](./assets/mlops-day52a.png)
 
-- Once  the containers are up, we can verify with `curl` if all containers are responding on their respctive ports.
+- Once containers are up, verify they are responding on their respective ports with `curl`:
 
-  - `curl http://localhost:8888/` might repond with `403` instead of `200` or `3020`, thats not a bad sign. It means the the server is running, our
-request reached the container.
-  - `curl --head http://localhost:5000/` should return `status: 200`
-  - `curl http://localhost:9001/` should return `status:200`
+  - `curl http://localhost:8888/` may respond with `403` — this indicates the server is running and the request reached the container.
+  - `curl --head http://localhost:5000/` should return `status: 200`.
+  - `curl http://localhost:9001/` should return `status: 200`.
 
 
 Done, hit **Check**

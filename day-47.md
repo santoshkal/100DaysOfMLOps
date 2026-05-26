@@ -35,25 +35,21 @@ The script re-persists the suite and re-executes the drift_check checkpoint. Exp
 ---
 # Solution:
 
-- We first run the `/root/code/dataquality/fix_drift.py` and see what it produces, and also check the Data Docs to see Validation results. We can see
-  that the script fails with `success: False` and In the Data Docs we can observe that `amount` expectation has drifted.
+- First, run `/root/code/dataquality/fix_drift.py` and observe its output. Also check the Data Docs to see the validation results. The script fails with `success: False`, and Data Docs shows that the `amount` expectation has drifted.
 
 ![check-script](./assets/mlops-day47.png)
 
 ![check-data-docs](./assets/mlops-day47a.png)
 
-- Now, we take a look at the script and see what's going on there. The docstrings say:
+- Now examine the script. The docstrings say:
 
-> The fix: widen the ``amount`` lower bound so the guard matches the
-updated business reality. The minimum accepted value below is still
-``0`` -- change it.
+> The fix: widen the `amount` lower bound so the guard matches the updated business reality. The minimum accepted value below is still `0` -- change it.
 
-When we observer the validation failure logs of the `amount` in Data Docs UI, we can see that the *observed minimum value* is `-347.22`, and the TODO
-says to set the `min_value` with a **little headroom**. So we update the `min_value=-400` and re run the script.
+Observing the validation failure logs for `amount` in the Data Docs UI, the *observed minimum value* is `-347.22`. The TODO says to set the `min_value` with a **little headroom**. Update `min_value` to `-400` and re-run the script.
 
 ![re-run-script](./assets/mlops-day47-1.png)
 
-- We now see `succes: True` message. We can also inspect the Data Docs UI, and see other JSON entries for the checkpoint and hit **Check**.
+- The script now prints `success: True`. Inspect the Data Docs UI and verify the checkpoint JSON entries, then hit **Check**.
 
 ![verify-data-docs](./assets/mlops-day47-2.png)
 

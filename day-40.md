@@ -31,8 +31,7 @@ The xFusionCorp Industries ML platform team ships a full fraud-detection trainin
 
 # Solution:
 
-- The task is to fix the pipeline that is run with `Makefile`. Its given that `src/select_model.py`, and `src/register.py` has some issues.
-Run the `make train-pipeline` and observer the output:
+- The task is to fix the pipeline run via `Makefile`. It is given that `src/select_model.py` and `src/register.py` have issues. Run `make train-pipeline` and observe the output:
 
 ```
 root@controlplane ~/code/fraud-detection ➜  make train-pipeline
@@ -43,35 +42,30 @@ python3 src/select_model.py
 make: *** [Makefile:8: train-pipeline] Error 1
 ```
 
-We can see that there is some issue with log that says *the tune stage has not produced any candidates yet.* and returns with non-zero exit code.
+The error log says *the tune stage has not produced any candidates yet* and exits with a non-zero exit code.
 
-- We check the `Makefile`, and see that the **Pipline** stages defined in each of the python sripts (refer the docstring in the python scripts) differes from the stages defined in
-`train-pipeline` target in `Makefile`.
-If you look at each of the python scripts in `src` we can make out that:
-  - Stage-1: Data validation in `validate_data.py`
-  - Stage-2: Optuna tuning across two model families with `tune.py`
-  - Stage-3: Model selection with `select_model.py`
-  - Stage-4: Register the selected model with `register.py`
-  - Stage-5: Training report with `report/py`
+- Check the `Makefile`. The pipeline stages defined in each Python script (refer to the docstrings) differ from the stages defined in the `train-pipeline` target in the `Makefile`.
+Looking at each Python script in `src`, the correct order is:
+  - Stage 1: Data validation with `validate_data.py`
+  - Stage 2: Optuna tuning across two model families with `tune.py`
+  - Stage 3: Model selection with `select_model.py`
+  - Stage 4: Register the selected model with `register.py`
+  - Stage 5: Training report with `report.py`
 
 ![check-Makefile](./assets/mlops-day40.png)
 
 
-- After align the `train-pipline` target in the `Makefile`, we re-run the command `make train-pipeline`.  The script runs, but this time it errors with
-  `KeyError: 'metrics.accuracy'` in `select_model.py`. When we look at the `select_model.py`, we can see that it wrongly records `metrocs.accuracy`
-instead of `metrics.f1_score`. We update the `select_mdoel.py` on line *31* and *41*.
+- After correcting the `train-pipeline` target in the `Makefile`, re-run `make train-pipeline`. This time it errors with `KeyError: 'metrics.accuracy'` in `select_model.py`. Looking at `select_model.py`, it incorrectly references `metrics.accuracy` instead of `metrics.f1_score`. Update lines 31 and 41 in `select_model.py`.
 
 ![update-select-model](./assets/mlops-day40-1.png)
 
-- Now we have another as: The MLFlow server should have a `fraud-detector` registered model with at least one version. That version carries the `staging` alias and no `production` alias.
-We update the *alias* in `register.py` for this and re-run the pipeline with `make train-pipeline`.
+- Next issue: The MLflow server should have a `fraud-detector` registered model with at least one version carrying the `staging` alias and no `production` alias. Update the alias in `register.py` and re-run the pipeline with `make train-pipeline`.
 
 ![update-alias](./assets/mlops-day40-2.png)
 
 ![rerun-pipeline](./assets/mlops-day40-3.png)
 
-- We can verify the MLFlow server UI, if the correct model is registerd with required alias with at least five runs and logs `metrics.f1_score` and
-hit **Check**
+- Verify in the MLflow server UI that the correct model is registered with the required alias, has at least five runs, and logs `metrics.f1_score`. Then hit **Check**.
 
 ![verify-alias](./assets/mlops-day40-4a.png)
 

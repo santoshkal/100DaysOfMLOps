@@ -26,31 +26,28 @@ The xFusionCorp Industries ML platform team runs fraud-detection training as a f
 # Solution:
 
 
-- We look at all the training scripts and see how there are wired in the `run_ippeline.py`. We can observer the stages from the docstrings in each
-trainer script:
-    - Stage-1: `src/preprocess.py`
-    - Stage-2: `src/featurize.py`
-    - Stage-3: `src/train.py`
-    - Stage-4: `src/evaluate.py`
+- Examine all training scripts to understand how they are wired in `run_pipeline.py`. The stages from the docstrings are:
+    - Stage 1: `src/preprocess.py`
+    - Stage 2: `src/featurize.py`
+    - Stage 3: `src/train.py`
+    - Stage 4: `src/evaluate.py`
 Each stage uses the output from the previous stage.
 
-- The tasks asks to run the `run_pipeline.py` and see whats broken in stage chain. `cd` into the `fraud-detection` and run the pipeline and observer
-the result.
-We can notice that the featurize stage show *rows=200  columns=5*. Whereas,it shoukd read the input from preprocess stage, which outputs a csv with
-192 rows.
+- The task asks to run `run_pipeline.py` and identify where the stage chain is broken. Change into the `fraud-detection` directory and run the pipeline, then observe the result.
+The featurize stage shows *rows=200, columns=5*. However, it should read from the preprocess stage output, which produces a CSV with 192 rows.
 
 ![check-pipeline](./assets/mlops-day37.png)
 
-- We investigate the `src/featurize.py`, and can see that the `input_path` variable on line *24* reads from `raw_path` field from the `configs/pipeline_config.yaml`. We fix it with read it from `prosessed_path`.
+- Investigate `src/featurize.py`. The `input_path` variable on line 24 reads from the `raw_path` field in `configs/pipeline_config.yaml`. Fix it to read from `processed_path` instead.
 
 ![update-featurize](./assets/mlops-day37-1.png)
 
 ![verify-config](./assets/mlops-day37-1a.png)
 
-- Now we re-run the `run_pipeline.py` and see the output. verify if the `model.pkl` and `reports/evaluation.json` is written to the correct path.
+- Now re-run `run_pipeline.py` and verify the output. Check if `model.pkl` and `reports/evaluation.json` are written to the correct paths.
 
 ![verify-run](./assets/mlops-day37-2.png)
 
 ![verify-artifacts](./assets/mlsop-day37-3.png)
 
-- Verify that the MLOps server has one experiment with three runs in the MLFlow UI and hit **cCheck**.
+- Verify that the MLflow server has one experiment with the expected runs in the MLflow UI, then hit **Check**.

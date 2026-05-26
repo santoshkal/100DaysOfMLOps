@@ -21,12 +21,11 @@ The served endpoint returns 200 on GET /health.
 
 # Solution:
 
-- This enviornment is already setup with backing stack (PostgreSQL, SeaweedFS, MLflow tracking server, three candidate runs). And, the task is to cover the remaining lifecycle work: model promotion, serving, and health monitoring.
+- The environment is already set up with the backing stack (PostgreSQL, SeaweedFS, MLflow tracking server, three candidate runs). The task is to cover the remaining lifecycle work: model promotion, serving, and health monitoring.
 
+- The requirements are to register a model named `fraud-detector-v2` in the MLflow Model Registry. Navigate to the MLflow UI. Under the *Model training* tab, select *Model registry* and click the **Create model** button:
 
-- The requirements are to register the model named `fraud-detector-v2`  in the MLflow Model Registry. For this we navigate to the MLFlow UI. Under *Model training* tab, we select *Model registry* and click on the **Create model** button:
-
-We create a Model named `fraud-detector-v2` **NOT `fraud-detection-v2`**:
+Create a model named `fraud-detector-v2` (**not** `fraud-detection-v2`):
 
 ![register-model](./assets/mlops-day30.png)
 
@@ -36,15 +35,12 @@ We create a Model named `fraud-detector-v2` **NOT `fraud-detection-v2`**:
 
 
 
-- The next task is to add an alias named `champion` to the model hat points at the version sourced from the `fraud-detection-v2` run with the **highest f1_score**.
-For this, we navigate back to *GenAI* and select the *training runs* for model *fraud-detection-v2*,
-and sort it based on `f1_score`.
+- The next task is to add a `champion` alias to the model version sourced from the `fraud-detection-v2` run with the **highest f1_score**. Navigate back to the MLflow UI and select the training runs for the `fraud-detection-v2` experiment, then sort by `f1_score`.
 
 ![sort-runs](./assets/mlops-day30-2.png)
 
 
-- Now we comeback to lab terminal and create the `./monitor.sh` from the template script
-`./monitor.sh.template`. and make it executable.
+- Now return to the lab terminal and create `./monitor.sh` from the template script `./monitor.sh.template`, then make it executable:
 
 ```
 cp ./monitor.sh.template ./monitor.sh
@@ -52,12 +48,10 @@ cp ./monitor.sh.template ./monitor.sh
 chmod +rx ./monitor.sh
 ```
 
-- Verify the `./monitor.sh`, and according to the requirememts we need to *export AWS_ACCESS_KEY_ID,
-AWS_SECRET_ACCESS_KEY, MLFLOW_S3_ENDPOINT_URL ENV vars* and use `mlflow models serve` as in our
-earlier labs to get the info from MLFlow server.
-Update the monitor.sh accordingly:
+- Verify `./monitor.sh`. According to the requirements, we need to export `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `MLFLOW_S3_ENDPOINT_URL` environment variables and use `mlflow models serve` to load the model from the MLflow server.
+Update `monitor.sh` accordingly:
 
-Check help for `mlflow models serve` with `--help` for available flags/arguments:
+Check `mlflow models serve --help` for available flags and arguments:
 
 ```
 #!/usr/bin/env bash
@@ -79,7 +73,7 @@ echo "unhealthy"
 exit 1
 ```
 
-- Once we run th`./monitor.sh` we should see `healthy`:
+- Once we run `./monitor.sh`, we should see `healthy`:
 
 ![monitor](./assets/mlops-day30-3.png)
 

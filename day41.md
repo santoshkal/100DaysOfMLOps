@@ -28,36 +28,32 @@ The xFusionCorp Industries ML platform team is adopting Feast as the feature sto
 
 # Solution:
 
-- This task deals with [`Feast`](https://docs.feast.dev/getting-started/quickstart), a feature store for AI/ML systems.
+- This task deals with [Feast](https://docs.feast.dev/getting-started/quickstart), a feature store for AI/ML systems.
 
-Feature store stores the cleaned and converted raw data , which can then be used in the training pipelines.
+A feature store stores cleaned and transformed raw data that can be used downstream in training pipelines.
 
+- The first task is to initialise a new feature store named `feature_repo`.
+The `feast` CLI is already installed, which can be verified with `feast version`. Once confirmed, initialise a new repository with `feast init feature_repo`.
 
-- The first tasks is to initialisze a new feature store by name `feature_store`
-And its given that `feast` CLI is installed, which can be verified with `feast version` command.
-Once verified, we can initialize a new repo with `feast init feature_store` command.
-
-For more details, always refer to `feast <command> --help`
+For more details, refer to `feast <command> --help`.
 
 ![create-repo](./assets/mlops-day41.png)
 
 
-- Next we cd into `feature_store/feature_store` directory created by above init command:
-As, the next command which creates the provider and database defined in the `feature_store.yaml` is within this directory, and we needto run `feast
-apply`, our next command.
+- Next, change into the `feature_repo/feature_repo` directory created by the init command. The next command, `feast apply`, which creates the provider and database defined in `feature_store.yaml`, must be run from this directory.
 
 ![feast-apply](./assets/mlops-day41-1.png)
 
 
-- Our next task is to start the Feast UI, and be able to access it from the button provided on the top-right of the lab.
+- The next task is to start the Feast UI and access it from the button at the top right of the lab.
 
-- Open another terminal, and cd into `feature_store/feature_store` and startthe Feast UI with 
+- Open another terminal, change into `feature_repo/feature_repo`, and start the Feast UI with:
 
-`feat ui &`
+`feast ui &`
 
 ![start-feast-ui](./assets/mlops-day41-2.png)
 
-- Now we can click the **FeastUI** button on top-right and the UI should open.
+- Now click the **FeastUI** button at the top right — the UI should open.
 
 Hit **Check**
 

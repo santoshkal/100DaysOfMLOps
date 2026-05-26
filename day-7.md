@@ -30,8 +30,7 @@ The `build` package is already installed. Use `python3` rather than `python`.
 
 # Solution:
 
-- cd into the `fraud-detection` dir, and check out the `pyproject.toml`. The main task is to update
-  this file as requirements. The updated `pyproject.toml` should look like this:
+- Change into the `fraud-detection` directory and examine the `pyproject.toml`. The main task is to update this file according to the requirements. The updated `pyproject.toml` should look like this:
 
 ```
 [build-system]
@@ -53,6 +52,5 @@ dependencies = [
 where = ["src"]
 ```
 
-- Once udpated, run `python3 -m build` and you should see the wheel file built and written into the
-  `./dist` dir.
+- Once updated, run `python3 -m build` and the wheel file should be built and written into the `./dist` directory.
   

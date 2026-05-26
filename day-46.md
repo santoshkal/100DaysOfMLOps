@@ -39,23 +39,20 @@ rendering of the same content. This lab lays the ground for both.
 
 # Solution:
 
-This task is about levereging [Great Expectations](https://docs.greatexpectations.io/docs/home/). Great Expectations (GX) is an open-source Python-based framework used for data testing, validation, profiling, and documentation. In machine learning, it acts as a gatekeeper for data quality, ensuring that the data feeding into your models is consistent and meets all structural and business logic requirements.
+This task is about using [Great Expectations](https://docs.greatexpectations.io/docs/home/) (GX), an open-source Python-based framework for data testing, validation, profiling, and documentation. In machine learning, GX acts as a gatekeeper for data quality, ensuring the data feeding into models is consistent and meets all structural and business logic requirements.
 
-- The task is t o update the `/root/code/dataquality/author_expectations.py` by completing the TODOs marked in the script. We navigate to the
-`author_expectations.py` in VSCode and inspect the code.
+- The task is to update `/root/code/dataquality/author_expectations.py` by completing the TODOs marked in the script. Open `author_expectations.py` in VSCode and inspect the code.
 
-We can see that the APIs to `add_expectation()` commented out for the first TODO. We follow the same style to call out the expectations the suite
-must carry out.
+The `add_expectation()` calls are commented out for the first TODO. Follow the same pattern to add all required expectations.
 
 ![update-author_expectations.py](./assets/mlops-day36.py)
 
-- Once updated, we can confirm this by running the script with `python3 /root/code/dataquality/author_expectations.py`
-We can see the script ran successfuly, and returned `success=True`.
+- Once updated, run the script with `python3 /root/code/dataquality/author_expectations.py`. The script should complete successfully and return `success=True`.
 
 ![run-author_expectations.py](./assets/mlops-day46-1.png)
 
 
-You can verify all the files generated in `./dataquality/gxpectations` and `./dataquality/gx/uncommited` directory and Hit **Check**.
+Verify the generated files in `./dataquality/gx/expectations` and `./dataquality/gx/uncommitted` directories, then hit **Check**.
 
 ![verify-end-state](./assets/mlops-day46-2.png)
 

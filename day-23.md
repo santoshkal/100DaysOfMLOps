@@ -16,28 +16,23 @@ A xFusionCorp Industries data scientist has accumulated ten runs in the fraud-de
 ---
 # Solution
 
-- open the MLFlow UI from by clicking on the button on the top right.
+- Open the MLflow UI by clicking the button at the top right.
 
-- Th task is to triage all th eexperiments based on `f1_score` metric. From the UI, we select the
-**Model training** button and click the **Experiments** tab. This will expose all the experiments.
-We can see two experiments listed: `fraud-detection`, and `Default`. We need to triage the
-`fault-detection` experiment based on some filters.
+- The task is to triage all the experiments based on the `f1_score` metric. From the UI, select the **Model training** button and click the **Experiments** tab. This exposes all experiments. Two experiments are listed: `fraud-detection` and `Default`. We need to triage the `fraud-detection` experiment based on filters.
 
 ![open-MLFlow-UI](./assets/mlflow-day23.png)
 
-- Click on the `fraud-detection`, this will open all the **Runs** for this experiment. On the Top we
-  can see a query window, we need to use it to filer runs based on our first requirement:  `metrics.f1_score > 0.85`, and sort it based on *highest `f1_score` values.
+- Click on `fraud-detection` to open all the **Runs** for this experiment. At the top there is a query window. Use it to filter runs based on the first requirement: `metrics.f1_score > 0.85`, and sort by the highest `f1_score`.
 
 ![filter-and-sort](./assets/mlflow-day23-1.png)
 
-- Once we get the run with highest `f1_score`, we need to tag it with `review-status: shortlisted`
+- Once we identify the run with the highest `f1_score`, tag it with `review-status: shortlisted`.
 
 ![tag-highest](./assets/mlflow-day23-2.png)
 
 ![tag-added](./assets/mlflow-day23-2a.png)
 
-- We do the same, but this time filter based on `metrics.f1_score < 0.75`, and tag all with
-`f1_score` less than 0.75 and tag them `review-status: rejected`.
+- Repeat the process, but this time filter based on `metrics.f1_score < 0.75`, and tag all qualifying runs with `review-status: rejected`.
 
 ![low-score-filter](./assets/mlflow-day23-3.png)
 

@@ -24,12 +24,12 @@ MLflow 3.x is pre-installed on the controlplane. Launch the tracking server in t
 
 # Solution:
 
-This task deals with MLFlow, a Open source AI evaluation and monitoring solution.
-Refer to the [official docs](https://www.mlflow.org/docs/latest/self-hosting/) for starting the MLFlow server with CLI flags.
+This task deals with MLflow, an open-source AI evaluation and monitoring solution.
+Refer to the [official docs](https://www.mlflow.org/docs/latest/self-hosting/) for starting the MLflow server with CLI flags.
 
-- We need to start the `mlflow server` by providing required args:
+- Start the `mlflow server` with the required arguments:
 
-- First create the required directories to house the SQLite database and artifacts
+- First create the required directories for the SQLite database and artifacts:
 
 ```
 mkdir -p root/code/mlflow-backend
@@ -49,7 +49,7 @@ mlflow server \
   --allowed-hosts '*'
 ```
 
-- Now you should be able to access the MLFlow Server UI by clicking thee button at the top right.
+- Now you should be able to access the MLflow Server UI by clicking the button at the top right of the lab.
 
 ![Command output](./assets/mlflow-1.png)
 

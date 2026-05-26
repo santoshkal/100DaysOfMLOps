@@ -37,20 +37,18 @@ pushes it, and the registry's HTTP catalogue answers `{"repositories":["fraud-de
 # Solution
 
 
-- The task is to fix the `ml-registry/push.sh` so that it builds and pushes the images to the local registry running in the lab env correctly.
+- The task is to fix `ml-registry/push.sh` so it builds and pushes the image to the local registry correctly.
 
-- `cd` into the `./ml-registry` and inspect the`push.sh` in VSCode. We can see that currently that script only builds the image with the reqiuired tag
-  and does not push the image to the registry. We also notice that the port defined for the registry in the script is referring to the port that
-local registry container exposes. The actual host port exposed to access the registry is `5555` and not `5000`. 
+- Change into `./ml-registry` and inspect `push.sh` in VSCode. Currently, the script only builds the image with the required tag but does not push it to the registry. Also, the port defined in the script points to the container port (`5000`) rather than the host port (`5555`).
 
-We update the port and add the command to push the image to local registy and run `./push.sh`:
+Update the port and add the `docker push` command, then run `./push.sh`:
 
 ![ipdate-script-and-run](./assets/mlops-day54.png)
 
-- We have pushed the image to local registry. Now we need toverify if the registry catalog returns desired image details and tags:
+- The image has been pushed to the local registry. Verify that the registry catalog returns the expected image details and tags:
 
 ![check-registry-for-image](./assets/mlops-day54a.png)
 
-We confirm using the commands in the *end state*, that the imageis pushed to the local registry. Hit **Check**
+Confirm using the commands in the *end state* that the image is pushed to the local registry, then hit **Check**.
 
 

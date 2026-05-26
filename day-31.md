@@ -29,28 +29,25 @@ The xFusionCorp Industries ML platform team maintains a config-driven training p
 
 # Solution:
 
-- The issue is already provided in the description:
-  - `src/models/train.py` has no issues
-  - `configs/train_config.yaml` nneds to be looked into for errors
+- The issue is described in the task:
+  - `src/models/train.py` has no issues.
+  - `configs/train_config.yaml` needs to be examined for errors.
 
-- Navigate to `fraud-detection` directory and explore `config/train_config.yaml` and `src/models/train.py` in VSCode, and try to run the `./src/models/train.py`. We first see an erro saying wrong estimator used:
+- Navigate to the `fraud-detection` directory and examine `configs/train_config.yaml` and `src/models/train.py` in VSCode. Try running `./src/models/train.py`. The first error indicates a wrong estimator:
 
 ```
 ERROR: unknown estimator type 'RandomForest'. Supported: ['GradientBoostingClassifier', LogisticRegression', 'RandomForestClassifier']
 ```
 
-We fis it with the one defined in the task with `RandomForestClassifier`, and re-run the `train.py`,
-now wee see:
+Fix it with the correct estimator name `RandomForestClassifier` as specified in the task, and re-run `train.py`. Now we see:
 
 ```
 ERROR: target column 'target' not found in /root/code/fraud-detection/data/train.csv. Available columns: ['amount', 'hour', 'num_tx_past_day', 'is_fraud']
 ```
 
-Here, we set the target_column as `is_fraud` based on the fact that this is the only column in the
-dataset with binary calssification.
+Set `target_column` to `is_fraud`, as this is the only binary classification column in the dataset.
 
-Now we set the `output.mde_path` as defined in the task and re-run `src/models/train.py` and we
-should see the `model.pkl` generated and located in `./models` directory.
+Now set the `output.model_path` as defined in the task and re-run `src/models/train.py`. The `model.pkl` should be generated and saved in the `./models` directory.
 
 
 ![config](./assets/mlops-day31.png)

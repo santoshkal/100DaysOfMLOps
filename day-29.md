@@ -48,19 +48,16 @@ The MLflow run appears in the *MLflow UI* (the metadata write to PostgreSQL succ
 # Solution:
 
 
-- This deals with some misconfiguration and fixing the pipeline. Expl- You can see from the files
-`./log__test_run.py`, and shell scripts `start-mlflow.sh` and `restart-mlflow.sh`
+- This task deals with diagnosing and fixing a misconfigured pipeline. Inspect the files `./log_test_run.py`, `start-mlflow.sh`, and `restart-mlflow.sh`.
 
-
-- You can see from the `./log_test_run.py` it states that:
+- Looking at `./log_test_run.py`, it states that:
 
 ```
 The three env vars MLFLOW_S3_ENDPOINT_URL, AWS_ACCESS_KEY_ID, and
 AWS_SECRET_ACCESS_KEY are set in the current shell
 ```
 
-But, when we inspect the `./start-mlflow.sh` we see only `AWS_ACCESS_KEY_ID` and `AWS_SECRET_KEY_ID`
-are defined and there's no ENV set for **SeaweedFS**
+However, when we inspect `./start-mlflow.sh`, we see only `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are defined, and there is no environment variable set for the SeaweedFS S3 endpoint.
 
 - Update the `./start-mlflow.sh`:
 
@@ -85,14 +82,12 @@ exec mlflow server \
   --allowed-hosts '*' --cors-allowed-origins '*'
 ```
 
-- Now, run the `./restart-mlflow.sh`. This script will kill any existing server process and restart it. Once you run this script open a new terminal, and tail the logs.
+- Now run `./restart-mlflow.sh`. This script kills any existing MLflow server process and restarts it. After running this, open a new terminal to tail the logs.
+
+- Next, run `./log_test_run.py` from the terminal where you ran the restart script. You should see success logs printed.
 
 
-- Next run `./log_test_run.py` from the terminal you ran the restart script. You should see success
-  logs printed in the log terminal.
-
-
-- Verify that the `test-remote` experiment has ran and conists a successful run.
+- Verify that the `test-remote` experiment has run and contains a successful run.
 
 ![verify-run](./assets/mlops-day29.png)
 

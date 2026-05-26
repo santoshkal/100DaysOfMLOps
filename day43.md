@@ -28,12 +28,12 @@ The xFusionCorp Industries ML platform team stages a materialisation script (`ma
 
 # Solution:
 
-- The task is to correct the errors with `END_DATE` in `./fraud-detection/feature_repo/materialize.sh` script. Open and inspect the script:
+- The task is to correct the `END_DATE` in `./fraud-detection/feature_repo/materialize.sh`. Open and inspect the script:
 
 ![update-end-date](./assets/mlops-day43.png)
 
 
-- Verify once by running `./materialize.sh`, and we see theat it runs without any errors.
+- Run `./materialize.sh` to verify it completes without errors.
 
 Hit **Check**
 

@@ -30,39 +30,27 @@ The xFusionCorp Industries ML platform team's release checklist requires a five-
 
 # Solution
 
-- The tasks states, *`src/models/evaluate.py` has bugs*. We `cd` into the `raud-detection` directory
-  and inspect the `evaluate.py` and run it once to see what it shows.
+- The task states that `src/models/evaluate.py` has bugs. Change into the `fraud-detection` directory and inspect `evaluate.py`. Run it once to see the current output.
 
-
-- We can see that the logs are not written to the desired `./reports` directory, and instead
-written to `/tmp/metrics.json`.
+- The metrics are not written to the desired `./reports` directory; instead they are written to `/tmp/metrics.json`.
 
 ![check](./assets/mlops-day33.png)
 
-- We update the `metrics.json` path in the script and re-run it once to verify that metrics are
-written to the desired path. and verify the `./reports/metrics.json` file to see if all metrics are
-populated.
+- Update the `metrics.json` path in the script and re-run it to verify that metrics are written to the desired path. Check `./reports/metrics.json` to confirm all metrics are populated.
 
 ![correct-metrics](./assets/mlops-day33a.png)
 
 ![chek-metrics](./assets/mlops-day33b.png)
 
 
-- We can see that only two of five metrics are pipulated and one of them `f1` is wrong and the
-desired name is `f1 score`. Looking at the script, we see that only two metrics are defined and
-other three needs to be defined. We update the `metrics` block by defining other three metrics as
-follows, and re run the script after update.
-
-Desired metric names: `accuracy`, `precision`, `recall`, `f1_score`, `auc_roc`.
+- Only two of five metrics are populated and one of them (`f1`) uses the wrong key name. The required metric names are: `accuracy`, `precision`, `recall`, `f1_score`, `auc_roc`. Update the `metrics` block by defining the missing three metrics, then re-run the script.
 
 
 ![add-metrics](./assets/mlops-day33c.png)
 
-- Now, all the metrics are populated in the `./reportes/metrics.json` with correct name and values.
-  Once verified, hit **Check**
+- All five metrics should now be populated in `./reports/metrics.json` with correct names and values. Once verified, hit **Check**.
 
-**Note**: You can referto the [`sklearn_metrics` official Python API docs](https://scikit-learn.org/stable/api/sklearn.metrics.html) for info on defining
-metrics.
+**Note**: Refer to the [scikit-learn metrics API docs](https://scikit-learn.org/stable/api/sklearn.metrics.html) for details on defining metrics.
 
 ![verify-final-metrics](./assets/mlops-day33d.png)
 

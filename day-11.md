@@ -18,36 +18,34 @@ Once tracking is moved to DVC, the DVC TRACKED section in the EXPLORER panel wil
 
 # Solution:
 
-This builds on the last task working with DVC. 
+This builds on the previous task working with DVC. 
 
-- cd into `fraud-detection` dir
+- Change into the `fraud-detection` directory.
 
-- Explore the git logs and you would see that the transaction dataset is tracked in Git. The tasks
-is to exclude it from git 
+- Examine the git logs; you will see that the transactions dataset is tracked in Git. The task is to remove it from Git tracking.
 
 ```
 git rm -r --cached data/raw/transactions.csv
 ```
 
-Without removing from Git tracking if you try to add it to DVC, the `dvc add` will error out
-complaining the file is tracked by git.
+If you try to add it to DVC without removing it from Git tracking first, `dvc add` will error out, complaining that the file is tracked by Git.
 
-- Once it's removed from git, add it to dvc:
+- Once it is removed from Git, add it to DVC:
 
 ```
-dvc add data/raw/transaction.csv
+dvc add data/raw/transactions.csv
 ```
 
 
-- Once the transaction.csv is added to the dvc, stage the `.dvc` pointer and `.gitignore` using git 
+- Once `transactions.csv` is added to DVC, stage the `.dvc` pointer file and `.gitignore` using Git:
 
 ```
 git add data/raw/.gitignore data/raw/transactions.csv.dvc
 ```
 
-This command would be presented when you add the transaction dataset with `dvc add` command.
+This command is displayed when you add the dataset with `dvc add`.
 
-- Commit with message *Track transactions dataset with DVC*
+- Commit with message: *Track transactions dataset with DVC*.
 
 
 

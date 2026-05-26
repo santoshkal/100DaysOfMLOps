@@ -24,19 +24,17 @@ Complete the xFusionCorp Industries fraud-detection production DVC pipeline. Thr
 
 # Solution:
 
-- First cd into the `ml-pipeline` dir and expore all the files available.
+- First change into the `ml-pipeline` directory and explore all available files.
 
-- The tasks says there is some issue in the `dvc.yaml` as `dvc repro` is failing. Run `dvc repro`
-and we can see the firs error:
+- The task states there is an issue in `dvc.yaml` as `dvc repro` is failing. Run `dvc repro` and observe the first error:
 
 ```
 ERROR: failed to reproduce 'preprocess': output 'data/processed/cleaned.csv' does not exist
 ```
 
-If we check the file, its `clean.csv` and not `cleaned.csv` as defined in the dvc.yaml. Update it to
-`clean.yaml` andmove to next task.
+The actual file is named `clean.csv`, not `cleaned.csv` as defined in `dvc.yaml`. Correct this and proceed to the next task.
 
-- Now for point-3, we need to add two more stages to the `dvc.yaml`:
+- For point 3, we need to add two more stages to `dvc.yaml`:
 
 ```
 stages:
@@ -76,9 +74,9 @@ stages:
 ```
 
 
-- Copy these files as asked in point-4. `/root/code/ml-pipeline/scripts-staging/train.py` and `scripts-staging/evaluate.py` into `scripts/`
+- Copy the files as requested in point 4: copy `/root/code/ml-pipeline/scripts-staging/train.py` and `scripts-staging/evaluate.py` into `scripts/`:
 
-Once Copied and `dvc.yaml` is updated, run `dvc repro`
+Once copied and `dvc.yaml` is updated, run `dvc repro`:
 
 
 ```
@@ -107,7 +105,7 @@ Use `dvc push` to send your updates to remote storage.
 ```
 
 
-- Now we need to stage the `dvc.lock` and other files and push the cache and tag it `v1.0`
+- Now stage the `dvc.lock` and other files, push the cache, and tag it `v1.0`:
 
 `git add .`
 

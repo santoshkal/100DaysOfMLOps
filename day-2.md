@@ -25,9 +25,9 @@ Make sure JupyterLab is running before using the button at the top of the lab.
 
 ---
 # Solution:
-- The tasks asks to *Create any missing directories*. If we look at the config. we see that the
-`c.ServerApp.nootbook_dir = '/root/notebooks'` is defined. But, we do not see a dir in `/root` named
-`notebooks`. First we create this dir by `mkdir /root/notebooks`
+- The task asks to *Create any missing directories*. If we look at the config, we see that `c.ServerApp.notebook_dir = '/root/notebooks'` is defined. However, there is no `notebooks` directory under `/root`.
+
+- First create this directory with `mkdir /root/notebooks`
 
 - Update the config according to the requirement provided in the task:
 
@@ -38,14 +38,16 @@ Make sure JupyterLab is running before using the button at the top of the lab.
 c.ServerApp.token = ''
 c.ServerApp.password = ''
 c.ServerApp.disable_check_xsrf = True
+# Udpate this line with `/root/notebooks`
 c.ServerApp.nootbook_dir = '/root/notebooks'
 c.ServerApp.port = 8888
 c.ServerApp.ip = '0.0.0.0'
 ```
 
-Now, activate the `venv` and run the command `jupyter lab --config=/root/code/jupyter_lab_config.py --allow-root --no-browser &`
+Now, activate the virtual environment and run: `jupyter lab --config=/root/code/jupyter_lab_config.py --allow-root --no-browser &`
 
-You should be able to open the Jupyter lab UI by clicking the button on top right of lab. 
+You should be able to open the JupyterLab UI by clicking the button at the top right of the lab.
 
 ![Jupyter lab UI](./assets/day-2.png)
 
+Now you can hit **Check**

@@ -22,21 +22,19 @@ A pickled model at `/root/code/fraud-detection/models/model.pkl.`
 
 # Solution:
 
-- The end-state says: *At least two runs exist in the `parallel-training` experiment on MLflow. Across the two runs, `params.n_jobs` takes the values `1` and -`1` (no run still carries the hardcoded "all"). And, the second ask is *Every run carries `metrics.training_time_seconds,` and the `n_jobs = -1` run is measurably faster than the `n_jobs = 1` run (at least 10 %).*
+- The end state requires at least two runs in the `parallel-training` experiment on MLflow, where `params.n_jobs` takes the values `1` and `-1` (no run carries the hardcoded `"all"`). Additionally, every run must carry `metrics.training_time_seconds`, and the `n_jobs=-1` run must be measurably faster than the `n_jobs=1` run (at least 10% faster).
 
-- We cd into the `fraud-detection` directory and open the `src/models/train_parallel.py` in VSCode and inspect it.
+- Change into the `fraud-detection` directory and open `src/models/train_parallel.py` in VSCode.
 
-- We can see that the variable `N_JOBS_VALUES` is wrong. It needs to be `1` and `-1`. We fix that, and move to next ask. The task says *no run still
-carries the hardcoded "all"*. Buut, on line *46* we see it uses "all". We update it with variable in the loop.
+- The variable `N_JOBS_VALUES` is incorrectly defined. It should be `[1, -1]`. Fix that. The task also says no run should carry the hardcoded `"all"`. However, on line 46 the code uses `"all"` as the parameter value. Update it to use the variable from the loop.
 
 ![update-train-parallel](./assets/mlops-day38.png)
 
-- We run th escript once and see how it behaves, and we can see that the run with `n_jobs` value of `-1` measures faster by more than 10%.
-We can also see that the run logs the metrics `training_time_seconds` and `n_jobs` as desired.
+- Run the script once and observe the behavior. The run with `n_jobs=-1` should be measurably faster (by more than 10%) than the run with `n_jobs=1`. Both runs should log `metrics.training_time_seconds` and `params.n_jobs` as desired.
 
 ![verify-run](./assets/mlops-day38-1.png)
 
-- We can verify the same on MLFlow server UI, and hit **Check**.
+- Verify the same on the MLflow server UI, then hit **Check**.
 
 
 

@@ -18,12 +18,10 @@ editor once the metric is registered.``
 --- 
 # Solution:
 
-This deals with [metrics in DVC](https://doc.dvc.org/command-reference/metrics).
+This task deals with [metrics in DVC](https://doc.dvc.org/command-reference/metrics).
 
-- cd into `fraud-detection` directory, and explore `dvc.yaml`.
-The tasks asks to *`dvc.yaml` must declare `metrics.json` as a DVC metric output*. Currently the
-`metrics.json` is defined under `outs`. move it under new section called `metrics` as shown in DVC
-officis docs link above.
+- Change into the `fraud-detection` directory and examine `dvc.yaml`.
+The task requires that `dvc.yaml` declares `metrics.json` as a DVC metric output. Currently, `metrics.json` is defined under `outs`. Move it into a new section called `metrics` as shown in the DVC official docs linked above.
 
 ```
 stages:
@@ -56,11 +54,9 @@ stages:
           cache: false  # disable saving the metrics.json in DVC cache
 ```
 
-**Note**: We also need to disable caching of metrics as we want the metrics.json to be in Gt
-history, and not in DVC cache.
+**Note**: We disable caching for metrics so that `metrics.json` is tracked in Git history rather than in the DVC cache.
 
-- After updating the `dvc.yaml` as above. Run the `dvc repro`, once the pipeline completes run,
-check the metrics with `dvc metrics show` command.
+- After updating `dvc.yaml` as shown above, run `dvc repro`. Once the pipeline completes, check the metrics with `dvc metrics show`.
 
 You should see:
 

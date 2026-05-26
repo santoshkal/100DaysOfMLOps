@@ -19,10 +19,9 @@ Review the existing configuration and source files, and correct everything that 
 
 # Solution:
 
-- cd into the `fraud-detection` dir and check the `pyproject.toml` file.
+- Change into the `fraud-detection` directory and examine the `pyproject.toml` file.
 
-- Update the `pyproject.toml` according to the requirements, and the final file should look as
-following:
+- Update `pyproject.toml` according to the requirements. The final file should look like this:
 
 ```
 [project]
@@ -39,17 +38,15 @@ select = ["E", "F", "W", "I"]  # Update this to add rules
 line-length = 120 # Update line length
 ```
 
-- Once the `pyproject.toml` is updated. check this with ` ruff check ./src`. You could find some
-error, like th epackage defined but not used. 
+- Once `pyproject.toml` is updated, check it with `ruff check ./src`. You may find errors such as imported packages not being used.
 
-- Fix the errors with ` ruff check ./src --fix`, this should fix the error. Now when you run the ` ruff check ./src`, you should see:
+- Fix the errors with `ruff check ./src --fix`. Now when you run `ruff check ./src`, you should see:
 ```
 root@controlplane ~/code/fraud-detection via 🐍 v3.12.3 ➜  ruff check ./src
 All checks passed!
 ```
 
-- Now, check the same with `black`. Use `black --check src/` and if everything is fine, you should
-see:
+- Now check formatting with `black`. Use `black --check src/` and if everything is fine, you should see:
 
 ```
 root@controlplane ~/code/fraud-detection via 🐍 v3.12.3 ➜  black --check ./src

@@ -17,21 +17,21 @@ The xFusionCorp Industries ML team manages model hyperparameters through params.
 
 # Solution:
 
-This tasks deals with DVC piplines, Pipelines can also have parameters in stages. Refer to the [official docs](https://doc.dvc.org/user-guide/pipelines/defining-pipelines#parameter-dependencies).
+This task deals with DVC pipelines. Pipelines can also have parameters in stages. Refer to the [official docs](https://doc.dvc.org/user-guide/pipelines/defining-pipelines#parameter-dependencies).
 
-The task says `dvc repro` fails. Let's check this out.
+The task says `dvc repro` fails. Let us investigate.
 
-- cd into the `fraud-detection` and run `dvc repro`. We get an error:
+- Change into the `fraud-detection` directory and run `dvc repro`. The error is:
 
 ```
 ERROR: failed to reproduce 'train': Parameters 'n_estimators' are missing from 'params.yaml'
 ```
 
-Let's look into `params.yaml` and `dvc.yaml`
+Let us examine `params.yaml` and `dvc.yaml`.
 
-- We can see that there is parameter name mismatch. `dvc.yaml` referes to `m_estimators`, where as, the `params.yaml` defines `n_estimator` (Singular). Correct the `params.yaml` value to align with `dvc.yaml`. 
+- There is a parameter name mismatch. `dvc.yaml` references `n_estimators`, whereas `params.yaml` defines `n_estimator` (singular). Correct the `params.yaml` value to align with `dvc.yaml`.
 
-- Now, when we run, `dvc repro` it succeeds. Now we need to demonstrate that with changed parameters (n_estimators set to 200), only the `train` stage should run. Update the `params.yaml` with new values and  run `dvc repro`, and you should see:
+- Now `dvc repro` succeeds. To demonstrate that DVC only re-runs the `train` stage when parameters change, update `params.yaml` with `n_estimators: 200` and run `dvc repro` again. You should see:
 
 ```
 root@controlplane fraud-detection on  main [!?] ➜  dvc repro
@@ -44,7 +44,7 @@ Updating lock file 'dvc.lock'
 ...
 ```
 
-As you can see, this time only the `train` stage was run.
+As shown above, only the `train` stage was re-executed this time.
 
 
 

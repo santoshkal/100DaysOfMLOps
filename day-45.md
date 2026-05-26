@@ -21,21 +21,17 @@ The xFusionCorp Industries ML platform team extended the Day-44 Vault wiring: in
 
 # Solution:
 
-- This lab takes it up from the last task, and now has some policy within the Vault that resolves the each API call against the capabilities defined
-in the policy. And the task suggests that the policy is authored wrong and we need to fix this.
+- This lab builds on the previous task. A Vault policy now governs API calls and their capabilities. The task indicates that the policy is misconfigured and needs fixing.
 
-- We open the Vault UI and login using `/root/code/vault-root-token`, and inspect the policy. We can see that the reason for API GET calls returning
-permission denied, is that the Policy is missing "read" capability. We add `read` to the policy, and save it.
+- Open the Vault UI and log in using the token from `/root/code/vault-root-token`. Inspect the policy. The reason API GET calls return `permission denied` is that the policy is missing the `read` capability. Add `read` to the policy and save it.
 
 ![udpate-policy](./assets/mlops-day45.png)
 
 
-- Once the policy is updated, the MLFlowwrapper will poll the secret in 5 seconds, and we can query the secret at `v1/secret/data/mlfow` path with
-`/root/code/vault-token` as bearer roken for the API call. And, we can see that the API call now responds with secret.
+- Once the policy is updated, the MLflow wrapper will poll the secret within 5 seconds. Query the secret at `v1/secret/data/mlflow` using the token from `/root/code/vault-token` as the bearer token. The API call should now return the secret successfully.
 
 ![verify-curl-get](./assets/mlops-day45-1.png)
 
-- Nex, we need to confirm if the MLFlow Server is reachable on `http://localhost:5000`, and we can confirm that with a `curl` command. We can complete
-  this by htiing **Check**.
+- Next, confirm that the MLflow Server is reachable on `http://localhost:5000` with a `curl` command. Then hit **Check**.
 
 ![verify-mlflow-curl](./assets/mlops/day45-2.png)

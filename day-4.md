@@ -38,11 +38,9 @@ Review the existing project and correct everything that does not match the requi
 
 # Solution:
 
-- First cd into the `fraud-detection` dir and check the `requirements.txt`. We need to update it
-according to the requirements of the task. It should look like this:
+- First change into the `fraud-detection` directory and check `requirements.txt`. Update it according to the task requirements. It should look like this:
 
-> **NOTE**: There are two README.md in this task. One is in the root at `./code` and the one we will
-> work is at `./code/fraud-detection`. First `cd` into the `fraud-detection` directory.
+> **NOTE**: There are two `README.md` files in this task. One is at `./code` and the one we will work on is at `./code/fraud-detection`. First `cd` into the `fraud-detection` directory.
 
 
 ```
@@ -52,9 +50,8 @@ numpy
 mlflow
 ```
 
-Next update the folder structure as defined in the question. 
-**Note**: The dir names in the `./fraud-detection/src`. Some dir are currently singlar like `util`,
-`feature`. These should be plural as defined in the task.
+Next, update the folder structure as defined in the task.
+**Note**: Some directories under `./fraud-detection/src` are currently singular (e.g., `util`, `feature`). These should be plural as specified in the task requirements.
 
-- Update the header in the README.md
+- Update the heading in `README.md`.
 

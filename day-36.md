@@ -26,19 +26,15 @@ The xFusionCorp Industries ML platform team is running a three-way bake-off betw
 --- 
 # Solution:
 
-**FLAML: A  Fast Library for Automated Machine Learning & Tuning**
+- The task requires fixing the orchestrator `bakeoff.py` which picks the wrong winner. We need to ensure `winner.json` corresponds to the candidate with the highest `f1_score`, and also fix the incomplete report generation.
 
-- The give task is the orchestrator `backoff.py` picking the wrong winner, as we need to ensure `winner.json` correspond to the candidate with the highest `f1_score` and the second task is to rectify the generation of incomplete report.
-
-- cd into the `fraud-detection` directiory and navidate to the `./src/models/bacloff.py`
-When we see the `backoff.py`,we observer that the runs are filtered by `ASC` which orderes the runs
-with *oldest first*, in order to filter based on *highest first* we need to update the line *39* in
-`src/models/backoff.py` with `DESC` in `mlflow.search_runs.ordered_by` to order based on `highest_f1` score:
+- Change into the `fraud-detection` directory and navigate to `./src/models/bakeoff.py`.
+When examining `bakeoff.py`, we observe that the runs are sorted by `ASC`, which orders runs with the oldest first. To get the highest `f1_score` first, update line 39 to use `DESC` in `mlflow.search_runs().order_by`:
 
 ![order-by](./assets/mlops-day36.png)
 
 
-- Next, we run all the trainer scripts `src/models/train_gb.py`, `train_lr.py`, and `train_rf.py` first, and then run `src/models/backoff.py`, to verify if the `./reports/winner.json` is populated with required metrics.
+- Next, run all three trainer scripts (`src/models/train_gb.py`, `src/models/train_lr.py`, and `src/models/train_rf.py`) first, then run `src/models/bakeoff.py` to verify that `./reports/winner.json` is populated with the required metrics.
 
 ```
 python3 src/model/train_gb.py
@@ -56,22 +52,17 @@ python3 src/models/backoff.py
 After running the scripts, we notice that the `./reports/winner.json` only captures `run_id`, and
 `f1_score`. Where it need to captoure `model_type` as well,which is missing.
 
-- We need to update the `backoff.py` script to add `model_type` as metric. We can do this where all
-other metrics are define, i.e. at line *49* `reports` block.
+- We need to update `bakeoff.py` to include `model_type` in the report. This can be done where other metrics are defined, around line 49 in the `report` dictionary.
 
-The task also refers saying all the trainer scripts tag the model with `candidate=<model family>`.
-We look at the trainer script and could see that on line *39* they set the model tag as `mlflow.set_tag("candidate", CANDIDATE)`. So the tag is `candidate`.
-We update this on line *49* in `backoff.py`
+The task mentions that all trainer scripts tag the model with `candidate=<model family>`. Examining the trainer scripts, line 39 sets `mlflow.set_tag("candidate", CANDIDATE)`. We read this tag in `bakeoff.py` around line 49.
 
 ![set-tag](./assets/mlops-day36-2.png)
 
-- After setting the tag, we re-run the `backoff.py` and verify that the `./reports/winner.json`
-is properly written with all the keys.
+- After updating the tag logic, re-run `bakeoff.py` and verify that `./reports/winner.json` is properly written with all required keys.
 
 ![verify-winner](./assets/mlops-day36-3.png)
 
-- We also need to ensure, that the MLFlow server has three runs of `backoff` experiment exist in the
-Server UI, one per candidate, each with `tags.candidate`, the candidate's hyperparameters, and `metrics.f1_score`.
+- Also ensure that the MLflow server has three runs in the `bakeoff` experiment, one per candidate, each with `tags.candidate`, the candidate's hyperparameters, and `metrics.f1_score`.
 
 ![verify-ui](./assets/mlops-day36-4.png)
 

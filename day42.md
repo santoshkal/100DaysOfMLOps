@@ -27,22 +27,19 @@ The xFusionCorp Industries ML platform team keeps the `fraud-detection` feature 
 
 # Solution:
 
-- The task is about fixing the `features.py` to match the desired end state:
-  - The `customer` entity in the registry has `join_keys` = ["customer_id"].
+- The task is to fix `features.py` to match the desired end state:
+  - The `customer` entity in the registry has `join_keys = ["customer_id"]`.
   - The `customer_transaction_features` feature view's `amount` field is declared as `Float32`.
-And finally:
-  - `feast apply` exits without error and the Feast UI reflects the corrected entity and feature-view schema.
+  - `feast apply` exits without error and the Feast UI reflects the corrected schema.
 
+- Examine `fraud-detection/feature_repo/features.py`. The `join_key` is misconfigured — it needs to be `customer_id` instead of just `id`. Additionally, the `amount` field is declared as a string type but should be `Float32` to match the source data.
 
-- We look at the `fraud-detection/feature_repo/features.py`. We can see that the `join_key` is misconfigured. It needs to be `customer_id` instead of
-just `id`. The second is on line *26*. And the data type for `amount` field is set to String, instead it need to be `Float32` as desired.
-
-After updating thesefields, we test this by running `feast apply` and could see that it returns with no errors.
+After updating these fields, run `feast apply` — it should complete without errors.
 
 ![update-verify](./assets/mlops-day42.png)
 
 
-- Additionally, we can start the Feast UI and see in the UI that the Feature view:
+- Additionally, start the Feast UI to verify that the feature view reflects the corrected schema:
 
 ![./feast-ui](./assets/mlops-day42-1.png)
 

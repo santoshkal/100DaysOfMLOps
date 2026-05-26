@@ -23,11 +23,11 @@ The xFusionCorp Industries ML team uses SeaweedFS as the shared S3-compatible ob
 ---
 # Solution
 
-- This task focuses on configuring and working with [DVC with remote data source](https://doc.dvc.org/start#configuring-a-remote) and [DVC configuration](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
+- This task focuses on configuring and working with [DVC remote storage](https://doc.dvc.org/start#configuring-a-remote) and [DVC configuration](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
 
-- cd into the `fraud-detection` directory.
+- Change into the `fraud-detection` directory.
 
-- Update the `config` file within the `./fraud-detection/.dvc`
+- Update the `config` file within `./fraud-detection/.dvc`:
 
 ```
 ['core']
@@ -40,17 +40,14 @@ The xFusionCorp Industries ML team uses SeaweedFS as the shared S3-compatible ob
     secret_access_key = weedadmin123
 ```
 
-**Note**: For complete options in the configuration file refer to the [official docs](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
+**Note**: For the complete set of configuration options, refer to the [official docs](https://doc.dvc.org/user-guide/project-structure/configuration#config-file-locations).
 
-The `['core']` section of the vdc config sets the repository’s default remote to s3
+The `['core']` section of the DVC config sets the repository's default remote to `s3`.
 
-The `['remote, "s3"']` configures the parameters for the S3 bucket with endpoint, bucket name and
-credentials.
-
+The `['remote "s3"']` section configures the S3 bucket parameters including the endpoint URL, bucket name, and credentials.
 
 
-- After updating the config, you can check if everything is fine by listing the remote with `dvc
-remote list` and verofy if the config is proper with `dvc doctor` command. 
 
-- Once veriofied you can push with `dvc push`. If the push succeeds, you would see a hidden file
-under `./fraud-detection/.dvc/cache` with `files/md5/...` prefix.
+- After updating the config, verify the remote is configured correctly with `dvc remote list` and check the overall configuration with `dvc doctor`.
+
+- Once verified, push with `dvc push`. If the push succeeds, the cached data will appear under `./fraud-detection/.dvc/cache` with a `files/md5/...` prefix.

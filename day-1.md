@@ -16,15 +16,15 @@ Generate a `requirements.txt` file using pip freeze and save it at `/root/code/r
 
 `cd /root/code`
 
-- Create the virtual enviornment
+- Create the virtual environment
 
 `python3 -m venv ml-env`
 
-- Activate the virtual env:
+- Activate the virtual environment:
 
 `source ml-env/bin/activate`
 
-- Install the requiremd packages within the new venv
+- Install the required packages within the new venv
 
 `pip install numpy pandas scikit-learn metplotlib`
 

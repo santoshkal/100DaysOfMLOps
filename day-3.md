@@ -20,9 +20,8 @@ The resulting requirements.txt must pin each of the four top-level packages to a
 
 # Solution:
 
-- All the files required for this task are within the `/root/code/fraud-detection` dir. CD into the
-  `fraud-detection` dir
-- Update the `requirements.in` as following:
+- All the files required for this task are within the `/root/code/fraud-detection` directory. Change into the `fraud-detection` directory.
+- Update `requirements.in` as follows:
 
 ```
 # Fraud detection project dependencies
@@ -35,7 +34,6 @@ pandas
 - Now compile the dependencies using `uv`:
 `uv pip compile requirements.in -o requirements.txt`
 
-- This should result in a new file `requirements.txt` generated which contains all the dependencies
-  pinned to some exact version of the package.
+- This generates a `requirements.txt` containing all dependencies pinned to exact versions.
 
 

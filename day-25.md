@@ -18,10 +18,9 @@ The xFusionCorp Industries ML platform team needs two trained candidates promote
 --- 
 # Solution:
 
-- We need to register the `fraud-detector` model with two versions and give them aliases.
+- We need to register the `fraud-detector` model with two versions and assign aliases.
 
-- Navigate to the MLFlow UI, and Select **Model registry** and click the *Create Model* button and
-create a model named `fraud-detector`.
+- Navigate to the MLflow UI, select **Model registry** and click the *Create Model* button to create a model named `fraud-detector`.
 
 ![create-model](./assets/mlops-day25.png)
 
@@ -31,26 +30,24 @@ create a model named `fraud-detector`.
 
 ![edit-description](./assets/mlops-day25-2.png)
 
-- Now navigateback to **Models**, you can see two models there namely `baseline`,
-  and `improved`. We need to register these model, version then, and give them aliases.
+- Now navigate back to **Models**. You can see two runs named `baseline` and `improved`. We need to register these as model versions and assign aliases.
 
 ![register-model](./assets/mlops-day25-4.png)
 
-- First select the `baseline` model and register it. Once we register it, it will get Version `v1`.
+- First select the `baseline` run and register it as a model. It will become Version `v1`.
 
 ![register-version](./assets/mlops-day25-5.png)
 
 ![version](./assets/mlops-day25-5a.png)
-- Do the same with `improved` model, it will be versioned `v2` when registered.
+- Do the same with the `improved` run; it will become Version `v2`.
 
 ![v2](./assets/mlops-day25-6.png)
 
-- Now navigate back to **Model registry** and select `fraud-detector`. Here, we need to provide alises to
-  the moldes.
+- Now navigate back to **Model registry** and select `fraud-detector`. Here we need to assign aliases to the versions.
 
 ![Alias-1](./assets/mlops-day25-7a.png)
 
-Note: You might have to refresh the browser after adding and saving a tag to a version.
+Note: You may need to refresh the browser after adding and saving a tag to a version.
 
 Hit **Check**
 

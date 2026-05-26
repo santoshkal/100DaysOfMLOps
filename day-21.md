@@ -20,10 +20,9 @@ A xFusionCorp Industries data scientist needs a training run recorded in MLflow 
 ---
 # Solution:
 
-The main task with this is to use the mlflow Python SDK and complete this task. You can refer to
-this [official doc](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html) relevant for this task.
+The main task is to use the MLflow Python SDK to complete this task. Refer to the [official API docs](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html) for the relevant functions.
 
-- Open the `./code/log_experiment.py` in the VSCode editor and update the `TODOs` as following:
+- Open `./code/log_experiment.py` in the VSCode editor and update the TODOs as follows:
 
 ```
 # ./code/log_experiment.py
@@ -71,8 +70,8 @@ with mlflow.start_run():
 ```
 
 
-- After updating the script, run the `log_experiment.py` 
-Finally, open the MLFlow UI and navigate to `Training runs` to see the logs captured in MLFlow.
+- After updating the script, run `log_experiment.py`.
+Finally, open the MLflow UI and navigate to `Training runs` to see the logs captured in MLflow.
 
 ![MLFlow-Logs](./assets/mlflow-21.png)
 

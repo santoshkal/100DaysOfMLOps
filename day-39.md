@@ -24,22 +24,18 @@ The xFusionCorp Industries ML platform team ships fraud-detection models built o
 # Solution
 
 
-- The task is to fix  two specific correnctions related to calls to `.cuda()`. It specifically sayes: *No bare `.cuda()` calls remain anywhere in
-`train_pytorch.py`.*
+- The task is to fix two specific issues related to `.cuda()` calls. It specifically states: *No bare `.cuda()` calls remain anywhere in `train_pytorch.py`.*
 
-- cd inro `fraud-detection` and inspect the `src/models/train_pytorch.py` in VSCode. The docstrings say *Every non-device concern is correctly wired*
-and *The current wiring assumes a CUDA GPU is always present*. This is our TODO and we need to make the script *device* aware instead of current
-hardcoded values. of `model.gpu()` and other two calls.
-The tasks also hints at using `torch.cuda.is_available()`. One way to do devise aware training is by using`torch.device("cuda" if torch.cuda.is_available() else "cpu")`. This will set he device as `gpu` if available, or use `cpu`.
+- Change into the `fraud-detection` directory and inspect `src/models/train_pytorch.py` in VSCode. The docstrings state that *every non-device concern is correctly wired* and *the current wiring assumes a CUDA GPU is always present*. We need to make the script device-aware instead of using hardcoded `.cuda()` calls.
 
-We update the code by removing all the hardcoded reference to `cuda`` as device, and set the device as a conditional variable based on device
-availability.
+The task hints at using `torch.cuda.is_available()`. The idiomatic approach is `torch.device("cuda" if torch.cuda.is_available() else "cpu")`. This sets the device to GPU if available, otherwise falls back to CPU.
+
+Update the code by removing all hardcoded references to `cuda` as the device and instead use a conditional device variable based on availability.
 
 ![update-conditional-device](./assets/mlops-day39.png)
 
 
-- Now, we run the `src/models/train_pytorch.py` and see the logs in MLFlow server. We can confirm that the experiment run has one run and logs
-`device` and `final_loss` params.
+- Now run `src/models/train_pytorch.py` and check the logs in the MLflow server. Confirm that the experiment has one run and logs both `params.device` and `metrics.final_loss`.
 
 ![verify-run](./assets/mlops-day39-1.png)
 

@@ -35,10 +35,9 @@ The xFusionCorp Industries ML platform team maintains a Cookiecutter template th
 
 # Solution:
 
-This task deals with [**cookiecutter**](https://cookiecutter.readthedocs.io/en/stable/), a utility that creates projects from cookiecutters (project templates) using Jinja template format.
+This task deals with [**cookiecutter**](https://cookiecutter.readthedocs.io/en/stable/), a utility that creates projects from project templates using the Jinja template format.
 
-- Look into the `cookiecutter.json` file under `./code/mlops-template` dir. The updated JSON file
-should look like this:
+- Examine the `cookiecutter.json` file under the `./code/mlops-template` directory. The updated JSON file should look like this:
 
 ```
 {
@@ -54,7 +53,7 @@ should look like this:
 }
 ```
 
-- Check the `README.md` and `requirements.txt`  and confirm, it uses the template values from `cookiecutter.json`. You might need to update the `README.md` :
+- Check the `README.md` and `requirements.txt` and confirm they use the template values from `cookiecutter.json`. You might need to update `README.md`:
 
 ```
 # {{cookiecutter.project_name}}
@@ -62,8 +61,7 @@ should look like this:
 Created by {{ cookiecutter.author }}. # Check the casing for author.
 ```
 
-And the `requirements.txt` must end the Jinja template with `{% endif %}` and use `==` for checking
-ml_framework.
+And the `requirements.txt` must close the Jinja template with `{% endif %}` and use `==` for checking the `ml_framework` value.
 
 ```
 {% if cookiecutter.ml_framework == 'sklearn' %}
@@ -76,12 +74,11 @@ tensorflow
 ```
 
 
-- Once the JSON template file is updated. cd into the `mlops-template` dir, and run:
+- Once the JSON template file is updated, change into the `mlops-template` directory and run:
 
 ```
 cookiecutter /root/code/mlops-template -o /root/code --no-input project=churn-model ml_framework=sklearn
 ```
 
-A new directory named, `/root/code/churn-mode` should be created with all the dirs and files defined
-in the cookiecutter template.
+A new directory named `/root/code/churn-model` should be created with all the directories and files defined in the cookiecutter template.
 

@@ -27,18 +27,16 @@ The xFusionCorp Industries ML platform team ships the `fraud-detection` model as
 ---
 # Solution:
 
-- We need to update the existing Dockerfile with multi-stage Dockerfile. CD into the `./ml-serve` directory and inspect the Dockerfile in VSCode and
-update the Dockerfile accordingly:
+- Refactor the existing Dockerfile into a multi-stage build. Change into the `./ml-serve` directory, inspect the Dockerfile in VSCode, and update it accordingly:
 
 ![update-Dockerfile](./assets/mlops-day51.png)
 
 
-- Run the `docker build -t ml-serve:v1 .` to build and tag the image:
+- Run `docker build -t ml-serve:v1 .` to build and tag the image:
 
 ![build-container](./assets/mlops-day51a.png)
 
-- We can check for `/health` port by running the container and trying to curl to the port on the other terminal with `curl
-http://localhost:<port>/health`, and we should see it return `ok`.
+- Start the container and test the `/health` endpoint from another terminal with `curl http://localhost:8080/health`. It should return `{"status":"ok"}`.
 
 Hit **Check**
 

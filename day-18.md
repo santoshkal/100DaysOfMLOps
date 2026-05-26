@@ -19,25 +19,21 @@ The xFusionCorp Industries ML team keeps different dataset and model versions on
 ---
 # Solution
 
-This deals with version control of Dataset, Models that are dealt by DVC. refer to the [official
-docs](https://doc.dvc.org/example-scenarios/versioning-data-and-models).
+This task deals with version-controlling datasets and models with DVC. Refer to the [official docs](https://doc.dvc.org/example-scenarios/versioning-data-and-models).
 
-- cd into the `fraud-detection` directiry and explore all the files as defined in point-1, and 2. We
-  should see the dataset in the defined directories.
+- Change into the `fraud-detection` directory and explore the files as described in points 1 and 2. You should see the datasets in the specified directories.
 
-- From the main branch (Current) tag it to `v1.0`
+- From the current `main` branch, tag it as `v1.0`:
 
 `git tag v1.0`
 
-- Now, create a new branch called `v2-improved`. As the task requirement is *Do NOT delete
-transactions_v2.csv*. we copy the v2 dataset to the tracked data in this branch:
+- Now create a new branch called `v2-improved`. Since the task requires *Do NOT delete `transactions_v2.csv`*, we copy the v2 dataset over the tracked data in this branch:
 
 ```
 cp data/raw/transactions_v2.csv data/raw/transactions.csv
 ```
 
-- Now as we've added a new version of dataset, we need to inform DVC to track it (DVC tracks
-datasets).
+- Now that we have added a new version of the dataset, we need to inform DVC to track it:
 
 ```
 root@controlplane fraud-detection on  v2-improved ➜  dvc add data/raw/transactions.csv
@@ -53,7 +49,7 @@ To enable auto staging, run:
 ```
 
 
-- Now, we need to re-run the pipeline and commit the changes:
+- Now re-run the pipeline and commit the changes:
 
 ```
 root@controlplane fraud-detection on  v2-improved [!] ➜  dvc repro
@@ -63,7 +59,7 @@ Stage 'split_data' didn't change, skipping
 Data and pipelines are up to date.``
 ```
 
-- Add the new dataset meta file to Git history:
+- Add the new dataset metadata file to Git history:
 
 ```
 git add data/raw/transactions.csv.dvc
@@ -73,7 +69,7 @@ git commit -m "Add improved v2 version of dataset"
 
 
 
-- Now Checkout to the main branch and use `dvc checkout` to restore the `v1` dataset on disk.
+- Now check out the `main` branch and use `dvc checkout` to restore the `v1` dataset on disk:
 
 `git checkout main`
 

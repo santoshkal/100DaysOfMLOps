@@ -34,16 +34,14 @@ The xFusionCorp Industries ML platform team runs a shell-based Docker CI pipelin
 ---
 # Solution:
 
-- The tasks is to fix the CI shell script `./build.sh` and advised to *Run `./build.sh` against the scaffold as-is; each re-run surfaces the next
-blocker. All fixes live inside `build.sh`.*
+- The task is to fix the CI shell script `./build.sh`. The instructions say: *Run `./build.sh` against the scaffold as-is; each re-run surfaces the next blocker. All fixes live inside `build.sh`.*
 
-- `cd` into the `ci` directory and inspect the `./build.sh` and run it to surface the issues.
+- Change into the `ci` directory, inspect `./build.sh`, and run it to surface the issues.
 
-- First issue is the port `5000`, which is container port, but we need to target the host port `5555`.
-- The first error we fac is `ERROR: file or directory not found: app/tests/`. Upon inspection, its `./app/test_app.py`. We update and run it again.
-- Next error we face is `./build.sh: line 24: GIT_SHA: unbound variable` . We can see that the ENV for storing the git SHA is named as `SHA`, but the
-  `TAGGED` wrongly refers to `GIT_SHA`. We updated the `TAGGED` to reference `SHA` correctly, and re run the script.
-- This time it runs with out any errors. 
+- First issue: port `5000` is the container port, but we need to target the host port `5555`.
+- Next error: `ERROR: file or directory not found: app/tests/`. The actual test file is `./app/test_app.py`. Update the path and re-run.
+- Next error: `./build.sh: line 24: GIT_SHA: unbound variable`. The environment variable storing the git SHA is named `SHA`, but `TAGGED` incorrectly references `GIT_SHA`. Update `TAGGED` to reference `SHA` correctly.
+- After these fixes, the script runs without errors.
 
 ![fix-sh](./assets/mlops-day56.png)
 

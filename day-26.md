@@ -18,29 +18,27 @@ A xFusionCorp Industries data scientist has trained three candidate models on th
 
 # Solution:
 
--  Navigate to the MLFlow UI, and select the `model-comparison` expirement.
+- Navigate to the MLflow UI and select the `model-comparison` experiment.
 
 ![select-experiment](./assets/mlops-day26.png)
 
-- Inspect the training runs for the experiment:
+- Inspect the training runs within the experiment:
 
 ![runs](./assets/mlops-day26-1.png)
 
-- The task is to compare the *runs* side-by-side, and select the run that has highest
-`metrics.f1_score` value.
+- The task is to compare the runs side by side and select the one with the highest `metrics.f1_score`.
 
 ![filter-by-f1-score](./assets/mlops-day26-2.png)
 
-- Once we identify the run with highest `f1_score` we need to tag that run with
-`production-canditate: true`. 
+- Once we identify the run with the highest `f1_score`, tag it with `production-candidate: true`.
 
-Select the run with highest score, and add tag.
+Select the run with the highest score and add the tag.
 
 ![add-tags](./assets/mlops-day26-3.png)
 
 ![add-tags1](./assets/mlops-day26.4.png)
 
-- Verify that no other runs has the tag `production-readiness: true`:
+- Verify that no other runs carry the `production-candidate` tag:
 
 ![verify-tag](./assets/mlops-day26-5.png)
 

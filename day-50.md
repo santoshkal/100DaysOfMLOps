@@ -25,18 +25,18 @@ The xFusionCorp Industries ML platform team packages the `fraud-detection` train
 # Solution:
 
 
-- This is to fix an existing Dockerfile and build the image with provided tag.
+- This task involves fixing an existing Dockerfile and building the image with the specified tag.
 
-- We inspect the Dockerfile first to see whats in it. We cd into `ml-docker` directory and try to build the image with `docker build -t ml-trainer:v1 .`. We see that the base image used is `python:3.11-alpine`. We change it to the required `python:3.11-slim` and add the `joblib` package to `RUN` instruction. Finally, try to build the container.
+- Inspect the Dockerfile first. Change into the `ml-docker` directory and try building with `docker build -t ml-trainer:v1 .`. The base image is `python:3.11-alpine`. Change it to the required `python:3.11-slim` and add `joblib` to the `pip install` instruction. Then rebuild.
 
 ![update-Dockerfile](./assets/mlops-day50.png)
 
 ![build-container](./assets/mlops-day50a.png)
 
 
-- We verify if the container is tagged and buiit correctly, and if all the python packages are installed within the container:
+- Verify that the image is tagged and built correctly, and that all required Python packages are installed inside the container:
 
 ![verify-container](./assets/mlops-day50b.png)
 
 
-That's all it is about. We can hot **Check**
+That completes the task. Hit **Check** to verify.

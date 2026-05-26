@@ -27,36 +27,27 @@ The xFusionCorp Industries ML platform team evaluates fraud-detection candidates
 ---
 # Solution:
 
-- This task to properly configure [*k-fold cross-validation*](https://www.datacamp.com/tutorial/k-fold-cross-validation) for the models. It clearly states *Every
-concern other than the splitter and the aggregate schema is correctly wired* in the
-`src/models.cross_validate.py` script.
+- This task involves properly configuring [k-fold cross-validation](https://www.datacamp.com/tutorial/k-fold-cross-validation) for the models. The task clearly states that *every concern other than the splitter and the aggregate schema is correctly wired* in `src/models/cross_validate.py`.
 
-- `cd` into the `fraud-detection` directory and inspect `./src/models/cross_validate.py`, and run it
-  once to see the behavior.
+- Change into the `fraud-detection` directory, inspect `./src/models/cross_validate.py`, and run it once to observe the behavior.
 
-- The ask is to see all the metrics for `mean_accuracy`, `std_accuracy`, `mean_f1`, `std_f1`, `mean_roc_auc`, `std_roc_auc`, `folds` are captured in `./reports/cv_results.json`
-But, whn we run the `cross_validate.py` we can see that only `mean_*` values are populated and
-`std_*` are not.
+- The requirement is that all metrics (`mean_accuracy`, `std_accuracy`, `mean_f1`, `std_f1`, `mean_roc_auc`, `std_roc_auc`, `folds`) are captured in `./reports/cv_results.json`. However, when we run `cross_validate.py`, only `mean_*` values are populated and `std_*` values are missing.
 
 ![verify-run](./assets/mlops-day34.png)
 
-- When we look from line 74 in the script, we can see that only `mean_*` are defined. We use
-`np.std()`, a function provided by `numpy` library to calculate the mean for all the scores.
+- Looking at the script around line 74, we see that only `mean_*` entries are defined. We need to add `np.std()` from the NumPy library to calculate the standard deviation for all scores.
 
-The task also signals about the `StratifiedKFlod` Class from `scikit-learn` for splitting the
-dataset and also suggests the fix is confined to CV Splitter and `aggregate` dict. 
+The task also mentions using `StratifiedKFold` from scikit-learn for splitting the dataset and suggests the fix is confined to the CV splitter and the `aggregate` dictionary.
 
-- We use the `StraiifiedKFlod()` instead of existing `KFlod()` Class to split the dataset.
+- Use `StratifiedKFold()` instead of the existing `KFold()` class to split the dataset while preserving class ratios.
 
 ![spliiter-update](assets/mlops-day34a.png)
 
-And update the `aggregate` dict and re-run the `./src/models/cross_validate.py`:
+Then update the `aggregate` dictionary and re-run `./src/models/cross_validate.py`:
 
 ![update-aggregate](./assets/mlops-day34-a.png)
 
-
-- We can confirm if all the metrics were properly populated in `./reports/cv_results.json` and hit
-**Check**.
+- Confirm that all metrics are properly populated in `./reports/cv_results.json`, then hit **Check**.
 
 ![final-verify](./assets/mlops-day34-b.png)
 

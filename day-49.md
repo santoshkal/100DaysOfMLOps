@@ -27,10 +27,9 @@ The xFusionCorp Industries ML platform team is cutting the first end-to-end rele
 
 # Solution:
 
-- The task is to release a model from its four UIs, stage the credential in Vault, open and merge a pull request then promote the model in MLFlow.
+- The task is to release a model using four UIs: stage the credential in Vault, open and merge a pull request, then promote the model in MLflow.
 
-- First we inspect the Vault, as one requirement is to have an nom-empty `mlflow_password` in the vault. We see there is no password currently, So we
-  `put` a password using `vault put` command.
+- First, inspect Vault — one requirement is a non-empty `mlflow_password` in the vault. Since no password exists yet, set one using the Vault CLI:
 
 ```
 export VAULT_ADDR='http://127.0.0.1:8200'
@@ -47,7 +46,7 @@ vault kv get secret/mlflow
 
 
 
-- Now, we are ready to open the PR and Merge it from the Gitea UI and wait for all CI checks to pass.
+- Now open and merge the PR from the Gitea UI. Wait for all CI checks to pass.
 
 ![open-pr](./assets/mlops-day49.png)
 
@@ -61,12 +60,12 @@ vault kv get secret/mlflow
 
 ![merge-pr](./assets/mlops-day49c.png)
 
-- Once the PR is merged, we need to navigate to MLFlow server UI and add an *alias* as `production` to the registered versioned model.
+- Once the PR is merged, navigate to the MLflow server UI and add a `production` alias to the registered model version.
 
 ![add-alias](./assets/mlflow-day49d.png)
 
-> You might want to refresh the MLFlow UI page to see the added alias
+> You may need to refresh the MLflow UI page to see the added alias.
 
-- We've satisfied all the tasks in *End state*, and can hit **Check**
+- All end state requirements have been satisfied. Hit **Check** to complete.
 
 

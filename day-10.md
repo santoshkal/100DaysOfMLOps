@@ -15,16 +15,14 @@ Once initialisation is complete, the DVC extension will detect the new `.dvc/` d
 
 # Solution:
 
-**NOTE**: This task deals with [**Data Version Control (DVC)**](https://doc.dvc.org/). A Git like Open-source version control system for Data Science and Machine Learning projects. 
+**NOTE**: This task deals with [**Data Version Control (DVC)**](https://doc.dvc.org/), a Git-like open-source version control system for Data Science and Machine Learning projects. 
 
+- First change into the `fraud-detection` directory. The project is initialized with Git and has one *Initial commit*.
 
-- First cd into the `fraud-detection` dir. The project is initialized with Git with one *Initial
-commit*.
+- Now initialize the project with DVC using `dvc init`.
+See more commands with `dvc` or `dvc --help`.
 
-- Now initialize the project with DVC. Use `dvc` CLI by running `dvc init`.
-See more commands with `dvc` or `dvc --help`
-
-- Once the project is initialized with DVC, stage the `.dvc/` and `.dvcignore` file generated after initializing the project using Git CLI.
+- Once the project is initialized with DVC, stage the `.dvc/` and `.dvcignore` files generated after initialization using the Git CLI.
 
 ```
 git add .dvc/ .dvcignore

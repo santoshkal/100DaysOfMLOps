@@ -30,20 +30,18 @@ The xFusionCorp Industries ML platform team serves the `fraud-detection` model o
 # Solution:
 
 
-- The task is to fix the Flask app setup through `./app.py` and to make it reachable on port `8085` and to align it with the required *end state*.
+- The task is to fix the Flask app in `./app.py` to make it reachable on port `8085` and align it with the required *end state*.
 
-- `cd` into the `serving` directory and inspect the `./app.py` in VSCode. We see that the `./app.py` sets the port wrongly as `5000` instead of
-required `8085`. We correct it and try to run and reach the Fask app.
-Another issue is that the `amount`, `hour` and `num_tx_past_day` are read as URL query parameters `request.args.get()`. But, we are passing a JSON
-as payload to the `/predict`. These variables should store the data read from `request.het_json()`.
+- Change into the `serving` directory and inspect `./app.py` in VSCode. The port is set to `5000` instead of the required `8085`. Correct it.
+Another issue: `amount`, `hour`, and `num_tx_past_day` are read from URL query parameters via `request.args.get()`, but the `/predict` endpoint receives a JSON payload. These variables should be read from `request.get_json()` instead.
 
 ![update-app.py](./assets/mlops-day57.png)
 
-- Now start the Flask server with `python3 ./app.py &` to run in the background. 
+- Now start the Flask server in the background with `python3 ./app.py &`:
 
 ![start-server](./assets/mlops-day57a.png)
 
-- On the other terminal curl the `/health` and `/predict` endpoints with required payload given in the task:
+- In another terminal, curl the `/health` and `/predict` endpoints with the payloads provided in the task:
 
 ![curl-endpoints](./assets/mlops-day57b.png)
 

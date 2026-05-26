@@ -20,9 +20,9 @@ The xFusionCorp Industries ML platform team wants every credential that a lab-op
 
 # Solution:
 
-- The task is to wire up the Vault token so that the MLFlow wrapper picks the secret.
+- The task is to configure the Vault secret so that the MLflow wrapper can read it.
 
-- First, we need to enable the KV v2 engine in Vault. For convenience export the vault URL and Token as ENVs:
+- First, enable the KV v2 engine in Vault. For convenience, export the Vault URL and token as environment variables:
 
 ```
 export VAULT_ADDR='http://127.0.0.1:8200'
@@ -31,22 +31,20 @@ export VAULT_TOKEN=$(cat /root/code/vault-token)
 ```
 
 
-- To enable Version 2 of KV store, we run `vault secrets enable -path=secret -version=2 kv`
+- To enable version 2 of the KV store, run `vault secrets enable -path=secret -version=2 kv`.
 
 ![enable-v2-kv](./assets/mlops-day44.png)
 
-- Next, secret at path `secret/mlflow` carries a non-empty `admin_password`. So we create a new secret with some random value, and verify that if the
-  secret was created.
+- Next, create a secret at path `secret/mlflow` with a non-empty `admin_password` value and verify that the secret was created:
 
 ![create-secret](./assets/mlops-day44-1.png)
 
-- We can verify the same with `curl` on path `v1/secret/data/mlflow`
+- Verify the same with `curl` on the path `v1/secret/data/mlflow`:
 
 ![check-secret-curl](./assets/mlops-day44-2.png)
 
 
-- Once the secret is created, it will be fetched every 5seconds, and the MLflow wrapper will comeup on localhost:5000. We will now verify if the
-MLFlow has comeup and hit **Check**.
+- Once the secret is created, it will be fetched every 5 seconds by the MLflow wrapper, and the MLflow server will start on localhost:5000. Verify that MLflow is running, then hit **Check**.
 
 ![verify-mlflow](./assets/mlops-day44-3.png)
 

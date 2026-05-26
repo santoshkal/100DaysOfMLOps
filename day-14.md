@@ -19,13 +19,12 @@ The xFusionCorp Industries ML team uses DVC pipelines to keep data processing re
 ---
 # Solution:
 
-This deals with [DVC Pipelines](https://doc.dvc.org/user-guide/pipelines).
+This task deals with [DVC Pipelines](https://doc.dvc.org/user-guide/pipelines).
 
-The tasks says `dvc repro` fails. `dvc repo` command reproduces complete or partial pipelines by executing their stages.
+The task mentions that `dvc repro` fails. The `dvc repro` command reproduces complete or partial pipelines by executing their stages.
 
-
-- cd into the `fraud-etection` directory and explore the `dvc.yaml` pipeline config file. You can notice that the command `cmd` inone of the stage, and dependencies `deps` and outputs `outs` are misconfigured. 
-Correct the configuration aligning with the requirements provided in point-2.
+- Change into the `fraud-detection` directory and examine the `dvc.yaml` pipeline configuration file. You may notice that the `cmd`, dependencies (`deps`), and outputs (`outs`) in some stages are misconfigured.
+Correct the configuration to align with the requirements in point 2.
 
 ```
 stages:
@@ -47,9 +46,9 @@ stages:
       - data/processed/test.csv
 ```
 
-> refer to point-2 of the requirements for depndencies and outputs.
+> Refer to point 2 of the requirements for the correct dependencies and outputs.
 
-- Once updated, run the `dvc repro` command:
+- Once updated, run `dvc repro`:
 
 ```
 root@controlplane fraud-detection on  main [!] ✖ dvc repro 

@@ -25,10 +25,9 @@ The xFusionCorp Industries ML platform team exposes the `fraud-detection` model 
 
 # Solution:
 
-- This is about invoking the `/predict` endpoint from the Swagger UI with provided three distinct fraud-detection prediction payloads.
+- This task involves invoking the `/predict` endpoint from the Swagger UI with three distinct fraud-detection prediction payloads.
 
-- cd into the `serving` directory, and inspect the `./app.py`. Per description, the server is functioning and should run fine. Start the server with
-`python3 ./app.py &`
+- Change into the `serving` directory and inspect `./app.py`. The server should be functional. Start it with `python3 ./app.py &`:
 
 ![run-app.py](./assets/mlops-day58.png)
 
@@ -36,22 +35,20 @@ The xFusionCorp Industries ML platform team exposes the `fraud-detection` model 
 
 ![open-swagger-ui](./assets/mlops-day58a.png)
 
-- Check `/health` endpoint to see if everything is working:
+- Check the `/health` endpoint to confirm the server is running:
 
 ![check-health](./assets/mlops-day58b.png)
 
-- Now, we invoke the `/predict` endpoint each with the following parameters
-  - 
-  - `{"amount": 3200, "hour": 23, "num_tx_past_day": 5}` 
-  - `{"amount": 25.5, "hour": 10, "num_tx_past_day": 1}` 
-  - `{"amount": 890, "hour": 2, "num_tx_past_day": 3}` 
+- Now invoke the `/predict` endpoint with each of the following payloads:
+  - `{"amount": 3200, "hour": 23, "num_tx_past_day": 5}`
+  - `{"amount": 25.5, "hour": 10, "num_tx_past_day": 1}`
+  - `{"amount": 890, "hour": 2, "num_tx_past_day": 3}`
 
-Click **Try it out** and update the values accrdingly, and hiit execute for all three predictions. These should return a different `is_fraud` value for each prediction.
+Click **Try it out**, update the values accordingly, and click **Execute** for all three predictions. Each should return a different `is_fraud` value.
 
 ![check-predcit](./assets/mlops-day58c.png)
 
-- Now on the lab terminal, we need to query the `/last-predictions` endpoint which should return the same three predictions in an array with same values we
-provided on the Swagger UI.
+- Now in the lab terminal, query the `/last-predictions` endpoint. It should return the same three predictions in an array with the values provided via the Swagger UI:
 
 ```
 curl http://localhost:8085/last-predictions

@@ -27,8 +27,7 @@ Confirm the result in the MLflow UI.
 
 # Solution
 
-- We need to update the `autolog_experiment.py` script and run it. After completing the TODOs, it
-should look like as following. You can refer to the official [Python APIs for `mlflow.sklearn`](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.sklearn.html)
+- We need to update the `autolog_experiment.py` script and run it. After completing the TODOs, it should look like the following. Refer to the official [Python APIs for `mlflow.sklearn`](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.sklearn.html).
 
 ```
 """
@@ -75,18 +74,18 @@ print("Autolog run complete — check the MLflow UI")
 ```
 
 
-- Once the script is updated, run it with:
+- Once the script is updated, run it:
 
 ```
  python3 /root/code/autolog_experiment.py
 ```
 
-After running verify in the UI, that the `autolog-demo` experiment was run.
+After running, verify in the UI that the `autolog-demo` experiment was created and contains a run.
 
 ![autolog-demo](./assets/mlflow-day24-1.png)
 
 
-And all the parameters we captured in the run:
+All the parameters captured in the run should be visible in the Parameters panel:
 
 ![parameters](./assets/mlflow-day24.png)
 

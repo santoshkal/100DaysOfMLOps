@@ -30,7 +30,7 @@ The end state must include:
 
 # Solution:
 
-- Update the `/root/code/predict-with_preprocessing.py` as following :
+- Update `/root/code/predict_with_preprocessing.py` as follows:
 
 ```
 """

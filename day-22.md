@@ -22,29 +22,27 @@ The xFusionCorp Industries ML platform team is onboarding two new ML projects an
 ---
 # Solution:
 
-This task needs to be completed on the MLFlow UI.
+This task needs to be completed on the MLflow UI.
 
-- Access the MLFlow UI from the button at the top.
+- Access the MLflow UI from the button at the top of the lab.
 
-- We already have two experiments listed. We are asked not to touch them in any way, and create two
-  experiments.
+- Two experiments are already listed. We are asked not to modify them and to create two new experiments.
 
 ![create-experiements](./assets/mlops-day22-1.png)
 
-- We create two experiments named `fraud-detection`, and `churn-prediction`
+- Create two experiments named `fraud-detection` and `churn-prediction`.
 
-- Next, we enter into the experiment view, and add the required tags for each experiment
+- Next, enter the experiment view and add the required tags for each experiment.
 
 ![Add-tags-1](./assets/mlops-day22-3.png)
 
 ![Add-tags-2](./assets/mlops-day22-3a.png)
 
-- Once we add tags for both the experiments, we need to add a description
+- Once tags are added for both experiments, add a description to the `fraud-detection` experiment.
 
 ![Add-description](./assets/mlops-day22-4.png)
 
 
-The final screen after we create the experiments with relevant tags, and description the UI should
-show something similar:
+After creating the experiments with the relevant tags and description, the UI should show something similar to this:
 
 ![final](./assets/mlops-day22-5.png)

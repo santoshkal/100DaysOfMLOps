@@ -24,12 +24,12 @@ Makefile recipes must be indented with a real tab character, not spaces. Make re
 ---
 # Solution:
 
-**Note**: Follow this manual on [more information on Makefile](https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles)
-- cd into the `fraud-detection` dir, and checkout the `Makefile` available.
-  - You might find some inconsistencies in teh Makefile, it has used spaces instead of `TAB` in some rules. Makefiles requires TAB spacing.
-  - `clean` does not recursively remove `__pycache__`, `.pytest_cache`, and `models/` contents are not cleared.
-  - The `all` target is missing
-  - `PHONY` decleration is missing
+**Note**: Refer to the [GNU Make manual](https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles) for more information on Makefiles.
+- Change into the `fraud-detection` directory and examine the existing `Makefile`.
+  - You may find inconsistencies: some rules use spaces instead of `TAB`. Makefiles require TAB characters for recipe indentation.
+  - The `clean` target does not recursively remove `__pycache__`, does not remove `.pytest_cache`, and does not clear the contents of `models/`.
+  - The `all` target is missing.
+  - The `.PHONY` declaration is missing.
 
 The updated `Makefile` should look like as following:
 
@@ -59,5 +59,5 @@ all: setup data train test
 ```
 
 
-- Once the `Makefile` is updated, run `make all` and the command should return with no errors.
+- Once the `Makefile` is updated, run `make all` — the command should complete without errors.
 

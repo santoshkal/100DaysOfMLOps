@@ -23,13 +23,11 @@ A new xFusionCorp Industries team member has cloned the `fraud-detection` reposi
 
 # Solution:
 
-This deals with `dvc pull` command, and configs
+This task deals with the `dvc pull` command and DVC configuration.
 
-- cd into the `fraud-detection` directory, and explore it. You can notice that the DVC cache
-directory in `./fraud-detection/.dvc/data/raw` and `./fraud-detection/.dvc/cache` directory is missing. This is because we have not pulled it from
-the remote. And, due to some reason, the `dvc pull` is failing. 
+- Change into the `fraud-detection` directory and explore it. Notice that the DVC cache directories (`./fraud-detection/.dvc/cache` and the dataset under `data/raw/`) are missing because we have not pulled from the remote. Additionally, `dvc pull` is failing.
 
-If we try `dvc pull` we see error:
+Running `dvc pull` produces an error:
 
 ```
 root@controlplane fraud-detection on  main ➜  dvc pull
@@ -39,10 +37,9 @@ Fetching
 ERROR: failed to pull data from the cloud - 1 files failed to download
 ```
 
-You can see, it says *Unable to locate credentials*
+The error indicates *Unable to locate credentials*.
 
-- Explore the config in `fraud-detection/.dvc/config`, and you will see that the credentials are
-missing in the config. Update it accorsdingly as provided in point-4 of the task:
+- Examine the config in `fraud-detection/.dvc/config`. You will see that the credentials are missing. Update it as specified in point 4 of the task:
 
 ```
 [core]
@@ -55,7 +52,7 @@ missing in the config. Update it accorsdingly as provided in point-4 of the task
     secret_access_key = weedadmin123
 ```
 
-- After updateing the config, try `dvc pull` and you should succeed:
+- After updating the config, try `dvc pull` and it should succeed:
 
 ```
 root@controlplane fraud-detection on  main [!] ✖ dvc pull
@@ -68,4 +65,4 @@ A       data/raw/transactions.csv
 1 file fetched and 1 file added
 ```
 
-- Now the `transactions.csv` should be present in `./fraud-detection/data/raw` dir.
+- Now `transactions.csv` should be present in `./fraud-detection/data/raw/`.

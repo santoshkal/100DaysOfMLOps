@@ -29,18 +29,15 @@ The xFusionCorp Industries ML platform team packages their training runs as MLfl
 
 # Solution:
 
-- The ask is to correct the MLflow configuration. It states *The trainer entry point. This file is
-correct and must not be modified.*, and the issue is in the `./trainer/MLProject` file.
+- The task is to correct the MLflow configuration. It states *The trainer entry point. This file is correct and must not be modified*, so the issue is in the `./trainer/MLProject` file.
 
-Refer to detailed info on configuring [MLProject file](https://www.mlflow.org/docs/latest/ml/projects/#mlproject-file-configuration).
+Refer to the [MLProject file configuration docs](https://www.mlflow.org/docs/latest/ml/projects/#mlproject-file-configuration) for details.
 
-- Open the MLFlow UI, and we can see one failed experiment run.
+- Open the MLflow UI. You can see one failed experiment run.
 
 ![failed-run](./assets/mlops-day28.png)
 
-- Open the both the files (`./trainer/MLProject` and `./trainer/train.py`) in VSCode and explore them. We can see that the parameter for
-`n_estimators` is misconfigured in `MLProject`. It has `n_est` declared in `command` block instead of `n_estimators` defined as
-argument in `train.py`.
+- Open both files (`./trainer/MLProject` and `./trainer/train.py`) in VSCode and examine them. The parameter for `n_estimators` is misconfigured in `MLProject`. It uses `n_est` in the `command` block instead of `n_estimators` as defined in `train.py`'s argument parser.
 
 ![train.py](./assets/mlops-day28-1.png)
 
@@ -48,11 +45,9 @@ argument in `train.py`.
 ![MLProject](./assets/mlops/day-28-1a.png)
 
 
-- Update the argument from `n_est` to`n_estimators` in `MLProject`s `command` block.
+- Update the argument from `n_est` to `n_estimators` in `MLProject`'s `command` block.
 
-
-- The next task is to run two sets of this experiments, one with default `n_estimators` value of
-100, and another with `200`. `cd` into the `./trainer` and run the `train.py` with default values:
+- The next task is to run two experiments: one with the default `n_estimators` value of 100, and another with 200. Change into the `./trainer` directory and run `train.py` with default values:
 
 ```
 python3 ./train.py
@@ -60,7 +55,7 @@ python3 ./train.py
 
 ![run-default](./assets/mlops/day28-2.png)
 
-Then next run with `n_estimators` value set to `200`.
+Then run with `n_estimators` set to `200`:
 
 ```
 python3 ./train.py --n_estimators=200
@@ -69,8 +64,7 @@ python3 ./train.py --n_estimators=200
 
 ![run-200-estimatiors](./assets/mlops-day28-2a.png)
 
-- Now, on the UI we can see two succesful runs of these experiments with different `n_estimators`
-value.
+- Now, in the UI we can see two successful runs with different `n_estimators` values.
 
 ![verify-runs](./assets/mlops-day28-3.png)
 

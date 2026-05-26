@@ -28,11 +28,9 @@ Tip: pre-commit autoupdate queries each referenced repository and rewrites the r
 ---
 
 # Solution:
-**Note**: This task deals with configuring [pre-commit hooks on a python project](https://pre-commit.com/)
+**Note**: This task deals with configuring [pre-commit hooks on a Python project](https://pre-commit.com/).
 
-- First cd into the `fraud-detection` dir, and check the `.pre-commit-config.yaml`. This is the file
-  which defines all the pre-commit hooks for the repo. If we run `pre commit run --all-files` we
-might see something like this:
+- First change into the `fraud-detection` directory and check the `.pre-commit-config.yaml`. This file defines all the pre-commit hooks for the repository. If we run `pre-commit run --all-files`, we might see something like this:
 
 ```
 root@controlplane fraud-detection on  main via 🐍 v3.12.3 ➜  pre-commit run --all-files
@@ -45,7 +43,7 @@ An error has occurred: InvalidConfigError:
 Check the log at /root/.cache/pre-commit/pre-commit.log
 ```
 
-- Update the `pre-commit-config.yaml` as following:
+- Update `.pre-commit-config.yaml` as follows:
 
 ```
 repos:
@@ -67,7 +65,7 @@ repos:
       - id: black
 ```
 
-- Run `pre commit run --all-files`:
+- Run `pre-commit run --all-files`:
 
 ```
 root@controlplane fraud-detection on  main [!] via 🐍 v3.12.3 ✖ pre-commit run --all-files

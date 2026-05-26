@@ -19,16 +19,15 @@ The xFusionCorp Industries data science team compares multiple training runs wit
 # Solution:
 
 
-This deals with running experiments with DVC's `dvc exp` command, refer to the [official docs](https://doc.dvc.org/start/experiments/experiment-pipelines) for
-more info.
+This task deals with running experiments using DVC's `dvc exp` command. Refer to the [official docs](https://doc.dvc.org/start/experiments/experiment-pipelines) for more information.
 
-The 2nd requirement in th etask, says to run *experiments*. So this deals with `dvc exp run` command. Check out multiple flags available with this command and we could see that `--set-param` is the one we can leverege in this task to set the different `n_estimators` value for each experiments.
+The second requirement says to run *experiments* using the `dvc exp run` command. The `--set-param` flag allows us to set different `n_estimators` values for each experiment.
 
-The `vdc.yaml` and `params.yaml` look fine.
+The `dvc.yaml` and `params.yaml` are correctly configured.
 
-- cd into the `fraud-detection` directory and start experiments:
+- Change into the `fraud-detection` directory and start the experiments:
 
-- Run three experiments by seeting different `n_estimators` value
+- Run three experiments, each with a different `n_estimators` value:
 
 ```
 dvc exp run --set-param n_estimators=50 # 1st experiment
@@ -36,8 +35,7 @@ dvc exp run --set-param n_estimators=50 # 2nd experiment
 dvc exp run --set-param n_estimators=50 # 3rd experiment
 ```
 
-- Now as three experiments are run we need compare the experiments andchoose the one which has
-highest `f1_score` recorded. This can be acheived with `dvc exp show` command.
+- Now that three experiments are complete, compare them and choose the one with the highest `f1_score`. This can be done with the `dvc exp show` command.
 
 ```
 root@controlplane fraud-detection on  main [!?] ➜  dvc exp show
@@ -53,8 +51,7 @@ WARNING: Unable to find `less` in the PATH. Check out <https://man.dvc.org/pipel
  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
-The table is mangled up, but we can make out that the one with `n_estimators: 200` has the highest
-`f1_score` of `0.92`. So we can coose this experiment and `apply` that particular experiment:
+The table is somewhat mangled, but we can see that the experiment with `n_estimators: 200` has the highest `f1_score` of `0.92`. We choose this experiment and apply it:
 
 ```
 root@controlplane fraud-detection on  main [!?] ➜  dvc exp apply genic-ices
@@ -64,6 +61,6 @@ Applying changes                                                                
 Changes for experiment 'genic-ices' have been applied to your current workspace.
 ```
 
-The experiment `genic-ices` is the name of the experiment that has highest `f1_score` of `0.92`.
+The experiment named `genic-ices` is the one with the highest `f1_score` of `0.92`.
 
-No need  to stage or commit the files further.
+No need to stage or commit any files further.

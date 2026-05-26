@@ -32,13 +32,11 @@ The xFusionCorp Industries ML platform team ships Flask-based inference APIs as 
 # Solution:
 
 
-- The task is to fix the `HEALTHCHECK` instruction in the existing Dockerfile and wireup the healthcheck to return `healthy` response from the
-container.
-`cd` into the `./ml-health` directory and inspect the Dockerfile. We can see some issues.
-- The lab instruction says, the *docker inspect ... should return healthy within 15 seconds*. But the `--timeout` in the `HEALTHCHECK` instruction is
-  set to `3s`, which lower than the `--interval`. We update the `--timeout` to `15s`.
-- The endpoint in the `HEALTHCHECK`s `CMD` *http://localhost:8085/healthz* points to `/healthz`, But, the `./app.py` exposes the endpoint as `./health` on port 8085. We update the enpoint accordingly.
-- The Dockerfile does not `EXPOSE` port `8085`. We add `EXPOSE` instruction with `8085`.
+- The task is to fix the `HEALTHCHECK` instruction in the existing Dockerfile so that the health check returns `healthy` from the container.
+Change into the `./ml-health` directory and inspect the Dockerfile.
+- The lab requires `docker inspect` to return `healthy` within 15 seconds. The `--timeout` is set to `3s`, which is lower than the `--interval`. Increase `--timeout` to `15s`.
+- The `HEALTHCHECK` CMD targets `http://localhost:8085/healthz`, but `./app.py` exposes the endpoint at `/health` on port 8085. Update the endpoint accordingly.
+- The Dockerfile does not declare `EXPOSE 8085`. Add the `EXPOSE` instruction with port `8085`.
 
 ![update-Dockerfile](./assets/mlops-day55.png)
 
@@ -46,7 +44,7 @@ container.
 
 ![build-image](./assets/mlops-day66.png)
 
-- In a different terminal we will query the `/health` endpoint from the running container, and check for `docker inspect` as desired:
+- In a separate terminal, query the `/health` endpoint from the running container and verify `docker inspect` shows the expected health status:
 
 ![check-health](./assets/mlops-day55c.png)
 

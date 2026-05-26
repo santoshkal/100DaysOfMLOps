@@ -26,19 +26,19 @@ The xFusionCorp Industries ML platform team tunes fraud-detection hyperparameter
 
 # Solution:
 
-- The task has two requirements *search optimises in the wrong direction and no trials ever land on the tracking server*.
+- The task has two issues: the search optimises in the wrong direction, and no trials land on the tracking server.
 
-- We cd into the `fraud-detection` directory and navaigate to the `./src/models/tune.py` in VSCode. Upon inspection we can find that the `optuma.create_study()` uses *minimize* as direction, which is contrary to the our requirement. We update this value to *maximize* which is another parameter available which helps produce the highest possible objective value (e.g.,increasing accuracy or F1-score).
+- Change into the `fraud-detection` directory and open `./src/models/tune.py` in VSCode. The `optuna.create_study()` uses `direction="minimize"`, which is contrary to our requirement. Update this to `direction="maximize"` so that the study searches for the highest possible objective value (e.g., maximising F1-score).
 
 ![update-direction](./assets/mlops-day35.png)
 
-- Next we check  the MLFlow UI if the experiment `hyperopt-tuning` is pushed will 20 runs. But, we see no runs being pushed to MLFlow server. When we inspect the `tune.py` we coudl see that the the MLFlow Tracking URL is set but there no code to push the runs to server. We add the code to push and re run the `./tune.py` and see if the runs were pushed to Server in the UI.
+- Next, check the MLflow UI to verify the `hyperopt-tuning` experiment has 20 runs. However, no runs appear. When we inspect `tune.py`, the MLflow tracking URI is set but there is no code to log trials to the server. Add code to log each trial run, then re-run `./tune.py` and verify the runs appear in the UI.
 
 ![add-server-code](./assets/mlops-day35-1.png)
 
 ![check-runs-ui](./assets/mlops-day35-2.png)
 
-- Verify that `./configs/best_prams.yaml` is written and hit **Check**.
+- Verify that `./configs/best_params.yaml` is written correctly and hit **Check**.
 
 ![best_prarms](./assets/mlops-day35-3.png)
 
