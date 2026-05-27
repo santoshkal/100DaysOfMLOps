@@ -37,16 +37,16 @@ endpoint, and submit each payload:
   - `{"amount": 25.5, "hour": 10, "num_tx_past_day": 1}`
   - `{"amount": 890, "hour": 2, "num_tx_past_day": 3}`
 
-![BentoML-ui](./assets/mlops-day60a.png)
+![BentoML-ui](./assets/mlops-day60.png)
 
 Click **Execute** for each request body.
 
-``![execute-request-body](./assets/mlops-day60b.png)
+``![execute-request-body](./assets/mlops-day60a.png)
 
 - After submitting all three predictions, open another terminal and verify the `/last_predictions`
 endpoint returns all three queries:
 
-![curl-last_prediction](./assets/mlops-day60c.png)
+![curl-last_prediction](./assets/mlops-day60b.png)
 
 - Confirm that `curl http://localhost:3000/` returns `200` and
 `curl -X POST http://localhost:3000/last_predictions -d '{}'` returns a JSON body with `count >= 3`
