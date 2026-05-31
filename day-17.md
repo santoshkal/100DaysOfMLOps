@@ -31,9 +31,18 @@ The `dvc.yaml` and `params.yaml` are correctly configured.
 
 ```
 dvc exp run --set-param n_estimators=50 # 1st experiment
-dvc exp run --set-param n_estimators=50 # 2nd experiment
-dvc exp run --set-param n_estimators=50 # 3rd experiment
+dvc exp run --set-param n_estimators=200 # 2nd experiment
+dvc exp run --set-param n_estimators=500 # 3rd experiment
 ```
+
+Or a script to run these experiments:
+
+```
+for i in 50 200 500; do;
+  dvc exp run --set-param n_extimators=$i
+done
+```
+
 
 - Now that three experiments are complete, compare them and choose the one with the highest `f1_score`. This can be done with the `dvc exp show` command.
 
