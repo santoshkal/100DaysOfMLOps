@@ -74,11 +74,11 @@ Correct it to `9090`. Restart the containers, and all the services should be wir
 - Next,we ned to create a Grafana dashboard with three panels, one each for `request rate`, `p95 inference latency`, and `prediction accuracy`. Login
   to Grafana UI and create a new Dashboard.
 
-![panel1](./assets/mlops-day752e.png)
+![panel1](./assets/mlops-day75e.png)
 
-![panel2](./assets/mlops-day752f.png)
+![panel2](./assets/mlops-day75f.png)
 
-![panel3](./assets/mlops-day752g.png)
+![panel3](./assets/mlops-day75g.png)
 
-![dashboard](./assets/mlops-day752h.png)
+![dashboard](./assets/mlops-day75h.png)
 

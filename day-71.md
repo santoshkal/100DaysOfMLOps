@@ -66,7 +66,7 @@ The xFusionCorp Industries ML platform team wants one model-overview dashboard i
 
 - Finally, test if the curl to search to type of dash-db return our user created dashboard.
 
-![curl-test](./assets/,lops-day71g.png)
+![curl-test](./assets/mlops-day71g.png)
 
 
 Done! Hit **Check**.
