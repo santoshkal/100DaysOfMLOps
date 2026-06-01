@@ -61,6 +61,7 @@ after restarting the containers with `docker compose restart metric-emitter prom
 - Now check the `./prometheus.yml` as its showing emtric-emitter as `DOWN`. We can see that the `metric-emitter` port is wronly defined as `8000`.
 Correct it to `5000` as defined in `./app/metric_emitter.py`. restart the containers and test the `prometheus` server.
 
+
 ![curt-test-prometheus](./assets/mlops-day75b.png)
 
 ![curl-test-prometheus1](./assets/mlops-day75c.png)
@@ -69,6 +70,8 @@ Correct it to `5000` as defined in `./app/metric_emitter.py`. restart the contai
 Correct it to `9090`. Restart the containers, and all the services should be wired up as desired.
 
 ![update-prometheus.yml](./assets/mlops-day75d.png)
+
+> **NOTE**: Restart all the containers once all the issues are fixed with `   docker compose restart metric-emitter prometheus grafana` command
 
 
 - Next,we ned to create a Grafana dashboard with three panels, one each for `request rate`, `p95 inference latency`, and `prediction accuracy`. Login
@@ -80,5 +83,23 @@ Correct it to `9090`. Restart the containers, and all the services should be wir
 
 ![panel3](./assets/mlops-day75g.png)
 
-![dashboard](./assets/mlops-day75h.png)
+- Once all three panels are created, we need to save the dashboard with `Monitoring overview` as  the name.
+
+![dashboard](./assets/mlops-day75-name.png)
+
+- Tag the Dashboard with either `mlops` or `monitoring`. open the settings page by clicking the gear icon on the dashboard edit page:
+
+![dashboard-setting](./assets/mlops-day75-setting.png)
+
+Then add the tag `monitoring` or `mlops` in the **Tags** tab
+
+![tag](./assets/mlops-day75-tag.png)
+
+- Navigate to the Dashboard page, and you should see the dashboard with `Monitoring overview` name, and `monitoring` tag.
+
+![tagged-dashboard](./assets/mlops-day75-dashboard.png)
+
+
+Done! navigae to the lab terminal and hit **Check**.
+
 
