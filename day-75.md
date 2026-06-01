@@ -100,6 +100,6 @@ Then add the tag `monitoring` or `mlops` in the **Tags** tab
 ![tagged-dashboard](./assets/mlops-day75-dashboard.png)
 
 
-Done! navigae to the lab terminal and hit **Check**.
+Done! navigate to the lab terminal and hit **Check**.
 
 
