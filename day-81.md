@@ -40,3 +40,24 @@ page becomes the single source of truth for what's running in production.
 
 # Solution:
 
+- This tasks is about cutting a new tagged release from the Gitea UI, such that `metrics.json` and a container image are published.
+
+- Login to the Gitea UI using the credentials provided, and navigate to the **Relases** page and fill in the form for a tagged release.
+
+![release](./assets/mlops-day81.png)
+
+- Once the release is created a `build-and-publish` action will trigger, that will generate `metrics.json` and `fraud-detector:v0.1.0` Image. Verify
+by navigating to the **ACtions** page.
+
+![build-publisg-action]
+
+- When the action competes successfuly, navigate to **REleases** page, and verify that the `metrics.json` is generated and available in the
+*Downloads* box.
+
+![metrics.json](./asstes.mlops-day81a1.png)
+
+- Navigate to profile level *packages*, availabe from your profile page, and under **Packages** tab, you will find the container image listed.
+
+![container](./assets/mlops-day81a2.png)
+
+The release is created and the required packages by the `build-and-push` action are generated. You can hit **Check** 
