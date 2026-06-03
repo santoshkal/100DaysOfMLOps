@@ -7,17 +7,40 @@ The xFusionCorp Industries ML platform team has stood up a fresh Kubernetes clus
 
 2. From the Argo UI:
 
-  - Click + Submit New Workflow (top-right on the Workflows list).
-  - The in-browser YAML editor opens with a default template that references an image the cluster's containerd no longer pulls. Replace the editor contents with a small hello-world using a current image (e.g. alpine:3.20) and keep metadata.namespace: argo.
+  - Click + *Submit New Workflow* (top-right on the Workflows list).
+  - The in-browser YAML editor opens with a default template that references an image the cluster's containerd no longer pulls. Replace the editor contents with a small hello-world using a current image (e.g. `alpine:3.20`) and keep `metadata.namespace: argo`.
   - Click + Create.
 
 3. The UI navigates to the new workflow's detail page. The single node on the graph moves through *Pending* → *Running* → *Succeeded* (green tick). Click the node to inspect the pod's log.
 
 4. The end state must include:
 
-  - GET http://localhost:5000/ returns 200 (Argo UI reachable).
-  - workflow-controller and argo-server Deployments in namespace argo are Available.
-  - GET /api/v1/workflows/argo lists at least one workflow.
-  - The most recently submitted workflow has status.phase == Succeeded (tests wait up to 180 s for it to reach a terminal phase).
+  - `GET http://localhost:5000/` returns 200 (Argo UI reachable).
+  - `workflow-controller` and `argo-server` Deployments in namespace `argo` are Available.
+  - `GET /api/v1/workflows/argo` lists at least one workflow.
+  - The most recently submitted workflow has `status.phase` == *Succeeded* (tests wait up to 180 s for it to reach a terminal phase).
 
 > Argo's + Submit New Workflow flow is how every future lab in this section starts. The UI's YAML editor is the canonical authoring surface—not kubectl apply -f file.yaml from a terminal. Treating the UI as the primary tool means every Workflow, WorkflowTemplate, and CronWorkflow change lives under a click trail rather than a shell history.
+
+---
+- The task requires to update the default [Argo workflow](https://argo-workflows.readthedocs.io/en/latest/) using the Argo UI by updating the image
+with `alpine:3.20` instead of the image used by default sample Argo workflow, and wait till the workflow transitions to success.
+
+- Open the Argo UI,  
+  - Click + *Submit New Workflow* (top-right on the Workflows list).
+
+  ![new-workflow](./assets/mlops-day85.png)
+
+  ![new-workflow1](./assets/mlops-day85aq.png)
+
+  - Update the `containers.image` to `alpine:3.20`, `command` to `/bin/sh` and `args[0]` to `-c`. Optionally, we can update the `spec.arguments.parametrs.value` to `hello world` and hit **Create**
+
+  ![update-manifest](./assets/mlops-day85a.png)
+
+- Wait for the condition to transition from *Pending* → *Running* → *Succeeded* (green tick).
+
+![workflow-status](./assets/mlops-day85c.png)
+
+- Finally, On the lab terminal check if the endpoints repond with status.phase == Succeeded.
+
+![curl-test](./assets/mlops-day85d.png)
