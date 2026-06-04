@@ -25,11 +25,33 @@ The xFusionCorp Industries ML platform team wants a reusable training pipeline t
 
 # Solution:
 
-- This involes invoke the template twice with different `min_score` values, and vusalize the behavior if the `min_score` is less than the `score` the
-  `register` node is skipped, and if `min_score` is greater than `score`, the `register` node fires and model is registered.
+- This involes invoking the Argo template twice with different `min_score` values, and vusalize the behavior. If the `score` is greater than the `min_score`, the register node fires and the model is registered. Otherwise, the register node is skipped.
+
 
 - Open the ArgoUI, and open *templates* from the left *Ribbon menu*, and open the existing template named `train-and-maybe-register`.
 
 ![open-template](./assets/mlops-day87.png)
 
+- First we will invoke the the template with default value of `0.85`, and that should skip the `register` step.
 
+![sumbit-with skip](./assets/mlops-day87a.png)
+
+- Verify that the register node is marked as *skipped*.
+
+![verify-skipped](./assets/mlops-day87b.png)
+
+
+- Next, we will re-submit the template with `min_score` value less than `0.75`. Set it to `0.70`. This should trigger the `register` node and
+registerthe model.
+
+![submit-with-register](./assets/mlops-day87c.png)
+
+- Verify that this run registers the model and runs successfuly.
+
+![verify-register](./assets/mlops-day87d.png)
+
+- `curl` the workflow template endpoint from the lab terminal, and we should get a response with template in JSON.
+
+![verify-curl](./assets/mlops-day87e.png)
+
+Done!! Hit **Check**.
