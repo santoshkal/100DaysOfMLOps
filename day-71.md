@@ -16,11 +16,12 @@ The xFusionCorp Industries ML platform team wants one model-overview dashboard i
 
 4. The end state must include:
 
-  - GET /api/search?type=dash-db returns at least one user-created dashboard.
+  - `GET /api/search?type=dash-db` returns at least one user-created dashboard.
   - The dashboard carries 4 or more non-row panels.
-  - The panel targets collectively reference flask_http_request_total, model_inference_duration_seconds_bucket, prediction_accuracy, and data_drift_score.
-  - The panels use at least 3 distinct visualization types (e.g. timeseries, stat, bargauge).
-  
+  - The panel targets collectively reference `flask_http_request_total`, `model_inference_duration_seconds_bucket`, `prediction_accuracy`, and `data_drift_score`.
+  - The panels use at least 3 distinct visualization types (e.g. `timeseries`, `stat`, `bargauge`).
+  - The Evidently UI's project keeps accumulating scoring runs (pre-wired—nothing to change).
+
 > The power of a multi-panel dashboard is not just density—it's that each signal answers a different question. Request rate tells you traffic shape, p95 latency tells you tail behavior, accuracy tells you model quality right now, and per-feature drift tells you why quality is shifting. Different questions deserve different visualizations.
 
 
@@ -64,7 +65,7 @@ The xFusionCorp Industries ML platform team wants one model-overview dashboard i
 
 ![view-dashboard](./assets/mlops-day71f.png)
 
-- Finally, test if the curl to search to type of dash-db return our user created dashboard.
+- Finally, test using `curl` on `/search` endpoint on a query type `dash-db`. The response should get you one user created dashboard.
 
 ![curl-test](./assets/mlops-day71g.png)
 
