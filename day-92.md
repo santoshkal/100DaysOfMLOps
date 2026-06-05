@@ -50,8 +50,8 @@ this connectivity.
 
 ![check-env](./assets/mlops-day92.png)
 
-- Inspect the Deployment and Service manifests in VSCode. We can see that the containerPOrt exposed by the Deployment is `80`, but the Service's
-`targetPort` is set to `8080`. And there's comment to help us saying *Nginx listens at port 80*.
+- Inspect the Deployment and Service manifests in VSCode. We can see that the `containerPort` exposed by the Deployment is `80`, but the Service's
+`targetPort` is set to `8080`. And there's comment to help us saying *nginx:alpine listens at port 80*.
 
 ![contaierPort](./assets/mlops-day92aa.png)
 
