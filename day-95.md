@@ -19,3 +19,29 @@ The xFusionCorp Industries ML platform team is piloting **Kubeflow Pipelines** o
 
 
 > KFP executes a compiled IR YAML — each @dsl.component in the source becomes one container per step pod. The UI's Upload Pipeline button writes the YAML to MySQL, and Create Run hands the IR to the ml-pipeline controller, which schedules each component as an Argo-workflow-like task graph under the hood. The reference source for this pipeline is at /root/code/kfp/pipeline.py.
+
+
+---
+
+- This task deals with uploading the pipeline.yaml to [KubeFlow](https://www.kubeflow.org/docs/) UI, and creating a runa default expirement with from that pipeline.
+
+> Note: As descibed in the description, to upload the `pipeline.yaml` to KubeFlow UI, we need the pipeline manifest on our host (not the lab
+> terminal). We can either download from the VSCode explorer or copy the contentx of YAML from `./kfp/pipeline.yaml` to our host.
+
+- Open Kubeflow UI, and upload the `pipeline.yaml` from your host and create Pipeline named `fraud-training`.
+
+![uplo-pipeline.yaml](./assets/mlops-day95.png)
+
+![create-pipeline](./assets/mlops-day95a.png)
+
+- Once the file is uploaded and pipeline created. Create a new run to run an expirement, and wait for it to complete.
+
+![create-run](./assets/mlops-day96b.png)
+
+![complete-run](./assets/mlops-day95cpng)
+
+- On the lab terminal query the `/pipelines` endpoint using `curl` and this should return you the `fraud-training` pipeline run as JSON reponse.
+
+![curl-test](./assets/mlops-day95d.png)
+
+Done!! Hit **Check**.
