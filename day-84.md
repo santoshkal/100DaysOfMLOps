@@ -32,3 +32,37 @@ The xFusionCorp Industries ML platform team is promoting the `fraud-detector` re
 # Solution:
 
 - The is to configure Gitea branch protection on `main` so every future change must land through a pull request with green `lint` + `test` checks and at least one approving review.
+
+
+- Open the Gitea UI and login using the credentials provided and navigate to *Settings* from the top righ of the `fraud=detector` repo and update the
+  *Branch protection Rule* form:
+
+![gitea-repo-setting](./assets/mlops-day84.png)
+
+![branch-protection](./assets/mlops-day84a.png)
+
+- Fill the for as asked in the task description:
+
+```
+  - Protected branch name pattern: `main`.
+  - Enable Push Whitelist: toggle on, leave the user / `team` / deploy-key lists empty. This blocks every direct push to `main` – All changes must arrive through a pull request.
+  - Enable Merge Whitelist: optional, defaults are fine.
+  -Enable Status Check: toggle on. In the status-check contexts multi-select, tick the check names that correspond to the lint and test jobs.
+  - Enable Approvals: toggle on. Set Required approvals to 1.
+  - Dismiss stale approvals, Require review from code owners, etc. – Leave at defaults unless you want to tighten further.
+```
+
+
+![branch-protection-form](./assets/mlops-day84b.png)
+
+![branch-protection-form1](./assets/mlops-day84c.png)
+
+![branch-protection-form2](./assets/mlops-day84d.png)
+
+- Save thebnranch protection rule, and naviaget to lab terminal and query the `/branch_protection` endpoint for the `fraud-detector` repo. The
+response should be a JSON body with the rule set for `fraud-detector` repo.
+
+![curl-test](./assets/mlops-day84e.png)
+
+Verify, and Hit **Check**.
+
