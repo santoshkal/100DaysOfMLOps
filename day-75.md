@@ -1,13 +1,14 @@
 # Task: End-to-End Monitoring: Prometheus, Grafana, Evidently
 
-The xFusionCorp Industries ML platform team tried to stand up a fresh monitoring stack for the fraud-detection model — metric-emitter + Prometheus + Grafana — but nothing is flowing end-to-end. Grafana renders empty panels, Prometheus's Targets page shows metric-emitter as DOWN, and the emitter's `/metrics` endpoint `404s`. Three wiring bugs are scattered across the stack's configuration. Your capstone task is to find and fix all three, then build a tagged monitoring overview dashboard in Grafana.
+The xFusionCorp Industries ML platform team tried to stand up a fresh end-to-end monitoring stack for the fraud-detection model—an Evidently drift scorer feeding a Flask metric-emitter, Prometheus scraping it, Grafana on top—but nothing is flowing end-to-end. Grafana renders empty panels, Prometheus's `Targets` page shows `metric-emitter` as DOWN, and the emitter's `/metrics` endpoint 404s. The Evidently scorer itself is healthy—its drift scores are sitting in the hand-off file—but every downstream link is broken, so not a single signal reaches a dashboard. Three wiring bugs are scattered across the stack's configuration. Your capstone task is to find and fix all three, then build a tagged monitoring overview dashboard in Grafana.
 
 
-1. The stack is at `/root/code/monitoring/` with three services defined in `docker-compose.yml`:
+1. The stack is at `/root/code/monitoring/` with three services defined in `docker-compose.yml`, plus the host-side Evidently scorer:
 
-  - `metric-emitter` – Flask exporter (Python source bind-mounted).
+  - `metric-emitter` – Flask exporter (Python source bind-mounted). Republishes the Evidently drift scores as `data_drift_score{column}` / `evidently_drift_share` next to its own serving signals.
   - `mon-prometheus` – Port `9090`.
   - `mon-grafana` – Port `3000`, `admin` / `grafana2026`. The Prometheus datasource is provisioned on boot.
+  - Evidently drift scorer – host process (`drift/drift_scorer.py`), rescores per-feature PSI every 15 s into `drift/drift_scores.json` and publishes a run to the Evidently UI (port `8000`) every ~minute. Healthy—not part of the bug hunt. Open the Evidently UI button -> fraud-detector drift monitoring -> Dashboard tab to confirm drift data is flowing at the source; everything downstream of it is what's broken.
 
 2. Diagnose and fix the three integration bugs. Symptoms to chase back to their source files:
 
@@ -32,12 +33,13 @@ Each bug lives in exactly one file under `/root/code/monitoring/` (`app/metric_e
 
 5. The end state must include:
 
-  - `docker exec metric-emitter curl -sf http://localhost:5000/metrics` returns HTTP `200`.
+  - `curl -sf http://localhost:5000/metrics` returns HTTP `200`.
   - *Prometheus* `GET /api/v1/targets` lists the `metric-emitter` job with health: "up".
-  - *Grafana* `GET /api/datasources` shows the Prometheus datasource URL ending in :9090.
+  - *Grafana* `GET /api/datasources` shows the Prometheus datasource URL ending in `:9090`.
   - One user-created dashboard has 3 or more panels and at least one tag.
+  - The Evidently UI's project keeps accumulating scoring runs (pre-wired—nothing to change).
 
-> A monitoring stack is only as useful as its weakest link. Each of these three bugs is silent on its own—none of them crashes a container—but together they cost you every metric Grafana would otherwise surface. The capstone is reading failure symptoms back to their config file, not retyping Python.
+> A monitoring stack is only as useful as its weakest link. Evidently can score drift perfectly and still page nobody: each of these three bugs is silent on its own—none of them crashes a container—but together they cost you every metric Grafana would otherwise surface. The capstone is reading failure symptoms back to their config file, not retyping Python.
 
 ---
   # Solution:
@@ -84,6 +86,7 @@ Correct it to `9090`. Restart the containers, and all the services should be wir
 ![panel3](./assets/mlops-day75g.png)
 
 - Once all three panels are created, we need to save the dashboard with `Monitoring overview` as  the name.
+You can view the Evidently dashboard on `http://localhost:8000`, and check the *Share of drifted columns* to verify.
 
 ![dashboard](./assets/mlops-day75-name.png)
 

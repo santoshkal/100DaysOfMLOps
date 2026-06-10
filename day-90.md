@@ -45,6 +45,6 @@ currently in suspended state.
 - On the lab terminal we can query the `fraud-retraining` cron-workflow endpoint and verify that it returns a cron with `spec.suspended` is `null` in the
   JSON body.
 
-![curl-test](./assets/mlops0day90d.png)
+![curl-test](./assets/mlops-day90d.png)
 
 Done!! Hit **Check**

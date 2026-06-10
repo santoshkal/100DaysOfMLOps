@@ -14,6 +14,8 @@ The xFusionCorp Industries ML platform team wants one model-overview dashboard i
 
 3. From the Grafana button, log in and build the four-panel dashboard.
 
+4. Cross-check against Evidently's own monitoring dashboard. Open the Evidently UI button (port `8000`) -> `fraud-detector` drift monitoring project -> Dashboard tab: it plots the drifted-columns share and the per-column PSI over time, one point per scoring run (a new run lands roughly every minute). The Reports tab lists the underlying runs—View any of them for the raw numbers behind your Grafana bars. Nothing to configure here; it's the same drift data, seen from Evidently's side.
+
 4. The end state must include:
 
   - `GET /api/search?type=dash-db` returns at least one user-created dashboard.
@@ -57,7 +59,7 @@ The xFusionCorp Industries ML platform team wants one model-overview dashboard i
 
 ![add-panel-3](./assets/mlops-day7d.png)
 
-- Add the fourth and final panel for `data_drift_score` metric of type *Bar guage*
+- Add the fourth and final panel for `data_drift_score` metric of type *Bar guage*. You can view the drifted columns from the Evidently dashboard:
 
 ![add-panel-4](./assets/mlops-day71e.png)
 

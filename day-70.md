@@ -8,7 +8,7 @@ The xFusionCorp Industries ML platform team wants the fraud-detection model's qu
   - `DatasetMissingValueCount(tests=[lt(10)])` – fail the suite when the batch carries 10 or more missing values.
   - `Accuracy(tests=[gt(0.80)])` – fail the suite when batch accuracy is `0.80` or lower.
 
-The batch it runs against is /root/code/monitoring/tests/current.csv (features + is_fraud target + the model's prediction column).
+The batch it runs against is `/root/code/monitoring/tests/current.csv` (`features` + `is_fraud` `target` + the model's `prediction` column).
 
 2. Run the suite: `python3 /root/code/monitoring/tests/test_suite.py`. Both tests should report *SUCCESS* — the batch carries only a few missing values and the model's batch accuracy clears `0.80`. The run writes `test_results.json` and publishes itself to the Evidently workspace. Open the Evidently UI button (port `8000`), go to the fraud-detector quality gates project -> Reports -> View on your run, and inspect the pass/fail verdicts on the Tests tab (the Metrics tab carries the raw numbers).
 
@@ -25,8 +25,8 @@ From the Grafana button, log in and create an alert rule that fires when avg_ove
   - `/root/code/monitoring/tests/test_results.json` exists and carries at least two Evidently test entries—a missing-values gate and an accuracy gate—all with status SUCCESS.
   - The Evidently UI's project carries at least one published run (snapshot).
   - `GET /api/v1/provisioning/alert-rules` returns a non-empty array.
-  - At least one rule's PromQL expression references prediction_accuracy.
-  - That rule's threshold evaluator carries 0.80 as a numeric parameter.
+  - At least one rule's PromQL expression references `prediction_accuracy`.
+  - That rule's threshold evaluator carries `0.80` as a numeric parameter.
 
 The same `0.80` accuracy gate is enforced at two altitudes: the Evidently test suite fails a CI pipeline before a degraded model ships, and the Grafana alert rule pages on-call after live accuracy slips. Evidently's `include_tests=True` turns each metric into a pass/fail assertion—the same structure a `pytest` run gives you, but over data and model quality—and the Evidently UI is where a reviewer reads those verdicts without touching code.
 
