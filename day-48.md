@@ -38,5 +38,5 @@ After adding the step, stage and commit the change, then push to the `add-data-d
 
 Once the commit is pushed, wait for the workflow to complete successfully, then hit **Check**.
 
-![add-action](./assets/mlops/day48-1.png)
+![add-action](./assets/mlops-day48-1.png)
 
