@@ -31,11 +31,11 @@ with `alpine:3.20` instead of the image used by default sample Argo workflow, an
 
   ![new-workflow](./assets/mlops-day85.png)
 
-  ![new-workflow1](./assets/mlops-day85aq.png)
+  ![new-workflow1](./assets/mlops-day85a.png)
 
   - Update the `containers.image` to `alpine:3.20`, `command` to `/bin/sh` and `args[0]` to `-c`. Optionally, we can update the `spec.arguments.parametrs.value` to `hello world` and hit **Create**
 
-  ![update-manifest](./assets/mlops-day85a.png)
+  ![update-manifest](./assets/mlops-day85b.png)
 
 - Wait for the condition to transition from *Pending* → *Running* → *Succeeded* (green tick).
 
